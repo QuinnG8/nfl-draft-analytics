@@ -7802,7 +7802,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Now that we have the production based on draft position, I want to find why receivers get drafted where they do. The first step I want to take is seeing how college yards/game translates into average draft positon! Keep in mind, these stats are from the 300 top college football receiving yards season by year. So players who have seasons outside of the top 300 in terms of receiving yards will now show up.</p>
+<h1 id="College-Production-Vs.-Draft-Position-Analysis">College Production Vs. Draft Position Analysis<a class="anchor-link" href="#College-Production-Vs.-Draft-Position-Analysis">¶</a></h1><p>Now that we have the production based on draft position, I want to find why receivers get drafted where they do. The first step I want to take is seeing how college yards/game translates into average draft positon! Keep in mind, these stats are from the 300 top college football receiving yards season by year. So players who have seasons outside of the top 300 in terms of receiving yards will now show up.</p>
 </div>
 </div>
 </div>
@@ -7811,7 +7811,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
@@ -7833,14 +7833,14 @@ a.anchor-link {
 <span class="s2">    ORDER BY 3 </span>
 <span class="s2">"""</span>
 
-<span class="c1"># Execute and display</span>
+<span class="c1"># execute and display</span>
 <span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">"WR COLLEGE YPG BY DRAFT PICK (2017-2025)"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
 
-<span class="c1"># Also show overall totals</span>
+<span class="c1"># also show overall totals</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="s2">"="</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"OVERALL SUMMARY"</span><span class="p">)</span>
 
@@ -8097,20 +8097,72 @@ OVERALL SUMMARY
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
 <p>Now that we have this information, I want to know how many players with x ypg get drafted in each position as mentioned below:</p>
-<p>Bucket:         Pick Range:
-Premium         1-10
-Round 1         11-32
-Round 2         33-64
-Round 3         65-96
-Round 4         97-128
-Round 5-7       129+</p>
-<p>My yards per game buckets will be as follows:
-0-30 YPG
-30-50 YPG
-50-70 YPG
-70-90 YPG
-90+ YPG</p>
+<h5 id="Draft-Capital-Buckets">Draft Capital Buckets<a class="anchor-link" href="#Draft-Capital-Buckets">¶</a></h5><table>
+<thead>
+<tr>
+<th style="text-align:left">Bucket</th>
+<th style="text-align:left">Pick Range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Premium</td>
+<td style="text-align:left">1-10</td>
+</tr>
+<tr>
+<td style="text-align:left">Round 1</td>
+<td style="text-align:left">11-32</td>
+</tr>
+<tr>
+<td style="text-align:left">Round 2</td>
+<td style="text-align:left">33-64</td>
+</tr>
+<tr>
+<td style="text-align:left">Round 3</td>
+<td style="text-align:left">65-96</td>
+</tr>
+<tr>
+<td style="text-align:left">Round 4</td>
+<td style="text-align:left">97-128</td>
+</tr>
+<tr>
+<td style="text-align:left">Round 5-7</td>
+<td style="text-align:left">129+</td>
+</tr>
+</tbody>
+</table>
+<h5 id="Yards-Per-Game-Buckets">Yards Per Game Buckets<a class="anchor-link" href="#Yards-Per-Game-Buckets">¶</a></h5><table>
+<thead>
+<tr>
+<th style="text-align:left">Bucket</th>
+<th style="text-align:left">YPG Range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Elite</td>
+<td style="text-align:left">90+ YPG</td>
+</tr>
+<tr>
+<td style="text-align:left">Great</td>
+<td style="text-align:left">70-90 YPG</td>
+</tr>
+<tr>
+<td style="text-align:left">Good</td>
+<td style="text-align:left">50-70 YPG</td>
+</tr>
+<tr>
+<td style="text-align:left">Role</td>
+<td style="text-align:left">30-50</td>
+</tr>
+<tr>
+<td style="text-align:left">Below Average</td>
+<td style="text-align:left">0-30 YPG</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -8119,7 +8171,7 @@ Round 5-7       129+</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
@@ -8171,16 +8223,12 @@ Round 5-7       129+</p>
 
 
 
-<span class="c1"># Execute and display</span>
+<span class="c1"># execute and display</span>
 <span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">"WR COLLEGE YPG BY DRAFT PICK (2017-2025)"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
-
-<span class="c1"># Also show overall totals</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="s2">"="</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"OVERALL SUMMARY"</span><span class="p">)</span>
 
 <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
@@ -8220,11 +8268,20 @@ Round 5-7       129+</p>
 97-128 (Round 4) 50-70 YPG             8
 97-128 (Round 4) 70-90 YPG             9
 97-128 (Round 4)   90+ YPG             2
-
-====================================================================================================
-OVERALL SUMMARY
 </pre>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
+<h3 id="Visualization">Visualization<a class="anchor-link" href="#Visualization">¶</a></h3><p>This is a lot of numbers that I don't know how to make sense of. Let's make a bar chart!</p>
 </div>
 </div>
 </div>
@@ -8233,44 +8290,44 @@ OVERALL SUMMARY
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">"📊 CREATING VISUALIZATION..."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"CREATING VISUALIZATION..."</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
 
-<span class="c1"># First, let's pivot the data to get it in the right format</span>
+<span class="c1"># first, let's pivot the data to get it in the right format</span>
 <span class="n">pivot_data</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">pivot</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">'pick_range'</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">'ypg_range'</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="s1">'player_count'</span><span class="p">)</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-<span class="c1"># Define the order for pick ranges</span>
+<span class="c1"># define the order for pick ranges</span>
 <span class="n">pick_order</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'1-10 (Premium)'</span><span class="p">,</span> <span class="s1">'11-32 (Round 1)'</span><span class="p">,</span> <span class="s1">'33-64 (Round 2)'</span><span class="p">,</span> 
               <span class="s1">'65-96 (Round 3)'</span><span class="p">,</span> <span class="s1">'97-128 (Round 4)'</span><span class="p">,</span> <span class="s1">'129+ (Round 5-7)'</span><span class="p">]</span>
 <span class="n">ypg_order</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'30-50 YPG'</span><span class="p">,</span> <span class="s1">'50-70 YPG'</span><span class="p">,</span> <span class="s1">'70-90 YPG'</span><span class="p">,</span> <span class="s1">'90+ YPG'</span><span class="p">]</span>
 
-<span class="c1"># Reindex to ensure correct order</span>
+<span class="c1"># reindex to ensure correct order</span>
 <span class="n">pivot_data</span> <span class="o">=</span> <span class="n">pivot_data</span><span class="o">.</span><span class="n">reindex</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="n">pick_order</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">ypg_order</span><span class="p">)</span>
 
-<span class="c1"># Set up the plot</span>
+<span class="c1"># set up the plot</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
 
-<span class="c1"># Set up bar positions</span>
+<span class="c1"># set up bar positions</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">pick_order</span><span class="p">))</span>
 <span class="n">width</span> <span class="o">=</span> <span class="mf">0.15</span>  <span class="c1"># Slightly smaller to fit 5 bars</span>
 
-<span class="c1"># Colors for each YPG range</span>
+<span class="c1"># colors for each YPG range</span>
 <span class="n">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'#FFD700'</span><span class="p">,</span> <span class="s1">'#C0C0C0'</span><span class="p">,</span> <span class="s1">'#CD7F32'</span><span class="p">,</span> <span class="s1">'#6B7280'</span><span class="p">,</span> <span class="s1">'#2E4057'</span><span class="p">]</span>
 
-<span class="c1"># Create bars for each YPG range</span>
+<span class="c1"># create bars for each YPG range</span>
 <span class="n">bars</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ypg</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">ypg_order</span><span class="p">):</span>
     <span class="n">bar</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">width</span><span class="p">,</span> <span class="n">pivot_data</span><span class="p">[</span><span class="n">ypg</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> 
                  <span class="n">label</span><span class="o">=</span><span class="n">ypg</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">colors</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">'black'</span><span class="p">)</span>
     <span class="n">bars</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bar</span><span class="p">)</span>
 
-<span class="c1"># Customize the chart</span>
+<span class="c1"># customize the chart</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'Draft Range'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">'bold'</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'Number of Players'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">'bold'</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'College Yards Per Game by Draft Position (2017-2025)'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">'bold'</span><span class="p">)</span>
@@ -8279,7 +8336,7 @@ OVERALL SUMMARY
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">'upper right'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">'y'</span><span class="p">)</span>
 
-<span class="c1"># Add value labels on bars</span>
+<span class="c1"># add value labels on bars</span>
 <span class="k">for</span> <span class="n">bar_group</span> <span class="ow">in</span> <span class="n">bars</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">bar</span> <span class="ow">in</span> <span class="n">bar_group</span><span class="p">:</span>
         <span class="n">height</span> <span class="o">=</span> <span class="n">bar</span><span class="o">.</span><span class="n">get_height</span><span class="p">()</span>
@@ -8307,7 +8364,7 @@ OVERALL SUMMARY
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>📊 CREATING VISUALIZATION...
+<pre>CREATING VISUALIZATION...
 ============================================================
 </pre>
 </div>
@@ -8344,12 +8401,13 @@ pick_range
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>This data shows us almost nothing, which in it of itself shows us something! There is not strong correlation to YPG and pick range, meaning that this stat isn't a strong predictor of where a receiver is going to be picked in the draft. Therefore, if there is a player who a team has their eyes set on who didn't have great production in yardage, you can't bank on them being avaialble in later rounds.</p>
+<h3 id="FINDINGS">FINDINGS<a class="anchor-link" href="#FINDINGS">¶</a></h3><p>This data shows us almost nothing, which in it of itself shows us something! There is not strong correlation to YPG and pick range, meaning that this stat isn't a strong predictor of where a receiver is going to be picked in the draft. Therefore, if there is a player who a team has their eyes set on who didn't have great production in yardage, you can't bank on them being avaialble in later rounds.
+<br/><br/></p>
 <p>We have to find what is a good indicator of draft position! So for this, I first need to make a query to find multiple statistics from college receivers:</p>
-<p>YPG
-YPC
-MAX REC TD
-40 Time
+<p>YPG <br/>
+YPC <br/>
+MAX REC TD <br/>
+40 Time <br/>
 Overall Pick</p>
 </div>
 </div>
@@ -8359,7 +8417,7 @@ Overall Pick</p>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
@@ -8600,10 +8658,20 @@ Marquez Valdes-Scantling American    73.300000        16.600000        6        
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><strong>LINKS</strong> <br/>
-<a href="https://quinng8.github.io/nfl-draft-analytics/">PORTFOLIO</a>
-<br/>
-<a href="https://quinng8.github.io/nfl-draft-analytics/03_combine_scatter.html">Combine Athleticism Scatter Plot</a></p>
+<p>I'll use this query in the next notebook on a scatterplot to see if there is anything I can find!</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<hr/>
+<h2>LINKS <br/></h2>
+<h4 id="PORTFOLIO"><a href="https://quinng8.github.io/nfl-draft-analytics/">PORTFOLIO</a><a class="anchor-link" href="#PORTFOLIO">¶</a></h4><h4 id="Combine-Athleticism-Scatter-Plot"><a href="https://quinng8.github.io/nfl-draft-analytics/03_combine_scatter.html">Combine Athleticism Scatter Plot</a><a class="anchor-link" href="#Combine-Athleticism-Scatter-Plot">¶</a></h4>
 </div>
 </div>
 </div>

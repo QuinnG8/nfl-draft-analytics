@@ -7802,12 +7802,10 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>We have to find what is a good indicator of draft position! So for this, I first need to make a query to find multiple statistics from college receivers:</p>
-<p>YPG
-YPC
-MAX REC TD
-40 Time
-Overall Pick</p>
+<h1 id="Scatter-Plot-with-Mixed-Data">Scatter Plot with Mixed Data<a class="anchor-link" href="#Scatter-Plot-with-Mixed-Data">¶</a></h1><p>In this notebook, I will use a blend of college production and combine production to try and find a correlation of where receivers are drafted.
+<br/><br/>
+I'll start by running the query I did in the last notebook.</p>
+<hr/>
 </div>
 </div>
 </div>
@@ -8057,7 +8055,25 @@ Marquez Valdes-Scantling American    73.300000        16.600000        6        
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Now we need to plot it on a scatter plot to see what we can find!</p>
+<h3 id="Scatter-Plot">Scatter Plot<a class="anchor-link" href="#Scatter-Plot">¶</a></h3><p>Now we need to plot it on a scatter plot to see what we can find! For this run, I am going to plot college yardage on the x axis, 40 yard dash time on the y axis, and I will plot the draft position by the size of each point. I will also make the color of each point different depending on how notable of a conference they are in.</p>
+<h4 id="LEGEND">LEGEND<a class="anchor-link" href="#LEGEND">¶</a></h4><table>
+<thead>
+<tr>
+<th style="text-align:left">X AXIS</th>
+<th style="text-align:left">Y AXIS</th>
+<th style="text-align:left">Point Size</th>
+<th style="text-align:left">Point Color</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">College YPG</td>
+<td style="text-align:left">40 Yard Dash</td>
+<td style="text-align:left">Draft Position <br/> BIG = Top 10 <br/> SMALL = Late Round</td>
+<td style="text-align:left">Conference <br/>RED = SEC, BIG 10<br/> BLUE = ACC, BIG 12, PAC 12<br/>GREEN = Other</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -8096,15 +8112,15 @@ Marquez Valdes-Scantling American    73.300000        16.600000        6        
 <span class="nb">print</span><span class="p">(</span><span class="s2">"CREATING SCATTER PLOT: COLLEGE PRODUCTION vs 40 TIME"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
 
-<span class="c1"># First, let's check what's in player_data</span>
+<span class="c1"># first, let's check what's in player_data</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Total players with data: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">player_data</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Pick range: </span><span class="si">{</span><span class="n">player_data</span><span class="p">[</span><span class="s1">'Pick'</span><span class="p">]</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">player_data</span><span class="p">[</span><span class="s1">'Pick'</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="s2">"="</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
 
-<span class="c1"># Set up the plot</span>
+<span class="c1"># set up the plot</span>
 <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 
-<span class="c1"># Define colors for conference tiers</span>
+<span class="c1"># define colors for conference tiers</span>
 <span class="n">conference_colors</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">'SEC, BIG 10'</span><span class="p">:</span> <span class="s1">'#FF4D4D'</span><span class="p">,</span>         <span class="c1"># Red</span>
     <span class="s1">'ACC, BIG 12, PAC 12'</span><span class="p">:</span> <span class="s1">'#4D4DFF'</span><span class="p">,</span> <span class="c1"># Blue</span>
@@ -8112,11 +8128,10 @@ Marquez Valdes-Scantling American    73.300000        16.600000        6        
 <span class="p">}</span>
 
 <span class="c1"># Define marker sizes based on pick number (lower pick = bigger marker)</span>
-<span class="c1"># Pick 1 = size 300, Pick 300 = size 30</span>
 <span class="n">max_pick</span> <span class="o">=</span> <span class="n">player_data</span><span class="p">[</span><span class="s1">'Pick'</span><span class="p">]</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 <span class="n">player_data</span><span class="p">[</span><span class="s1">'marker_size'</span><span class="p">]</span> <span class="o">=</span> <span class="n">player_data</span><span class="p">[</span><span class="s1">'Pick'</span><span class="p">]</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">get_marker_size</span><span class="p">)</span>
 
-<span class="c1"># Create scatter plot for each conference tier</span>
+<span class="c1"># create scatter plot for each conference tier</span>
 <span class="k">for</span> <span class="n">tier</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="n">conference_colors</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="n">tier_data</span> <span class="o">=</span> <span class="n">player_data</span><span class="p">[</span><span class="n">player_data</span><span class="p">[</span><span class="s1">'conference_tier'</span><span class="p">]</span> <span class="o">==</span> <span class="n">tier</span><span class="p">]</span>
     
@@ -8132,7 +8147,7 @@ Marquez Valdes-Scantling American    73.300000        16.600000        6        
             <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">tier</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">tier_data</span><span class="p">)</span><span class="si">}</span><span class="s2"> players)"</span>
         <span class="p">)</span>
 
-<span class="c1"># Add labels for top 10 picks</span>
+<span class="c1"># add labels for top 10 picks</span>
 <span class="n">top_picks</span> <span class="o">=</span> <span class="n">player_data</span><span class="p">[</span><span class="n">player_data</span><span class="p">[</span><span class="s1">'Pick'</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="p">]</span>
 <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">player</span> <span class="ow">in</span> <span class="n">top_picks</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
     <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span>
@@ -8145,8 +8160,8 @@ Marquez Valdes-Scantling American    73.300000        16.600000        6        
         <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">boxstyle</span><span class="o">=</span><span class="s1">'round,pad=0.3'</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">'yellow'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
     <span class="p">)</span>
 
-<span class="c1"># Add a colorbar to explain marker sizes</span>
-<span class="c1"># Create a legend for pick ranges</span>
+<span class="c1"># add a colorbar to explain marker sizes</span>
+<span class="c1"># create a legend for pick ranges</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="kn">import</span> <span class="n">Patch</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.lines</span><span class="w"> </span><span class="kn">import</span> <span class="n">Line2D</span>
 
@@ -8159,22 +8174,22 @@ Marquez Valdes-Scantling American    73.300000        16.600000        6        
     <span class="n">Line2D</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">marker</span><span class="o">=</span><span class="s1">'o'</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'w'</span><span class="p">,</span> <span class="n">markerfacecolor</span><span class="o">=</span><span class="s1">'gray'</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'Late Pick'</span><span class="p">)</span>
 <span class="p">]</span>
 
-<span class="c1"># Customize the chart</span>
+<span class="c1"># customize the chart</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">'College Yards Per Game'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">'bold'</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">'40 Yard Dash (seconds)'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">'bold'</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">'WR Draft: College Production vs Athleticism (Colored by Conference, Size = Pick #)'</span><span class="p">,</span> 
              <span class="n">fontsize</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">'bold'</span><span class="p">)</span>
 
-<span class="c1"># Invert y-axis (lower 40 time is better)</span>
+<span class="c1"># invert y-axis (lower 40 time is better)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">invert_yaxis</span><span class="p">()</span>
 
-<span class="c1"># Add grid</span>
+<span class="c1"># add grid</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">)</span>
 
-<span class="c1"># Add legend</span>
+<span class="c1"># add legend</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">handles</span><span class="o">=</span><span class="n">legend_elements</span><span class="p">,</span> <span class="n">loc</span><span class="o">=</span><span class="s1">'upper right'</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 
-<span class="c1"># Add some reference lines (optional)</span>
+<span class="c1"># add some reference lines (optional)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mf">4.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'gray'</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'4.5 sec threshold'</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">70</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">'gray'</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">'--'</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'70 YPG threshold'</span><span class="p">)</span>
 
@@ -8182,8 +8197,8 @@ Marquez Valdes-Scantling American    73.300000        16.600000        6        
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">'wr_draft_scatter_by_pick.png'</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="s1">'tight'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
-<span class="c1"># Show summary statistics</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">📊 SUMMARY BY CONFERENCE TIER:"</span><span class="p">)</span>
+<span class="c1"># show summary statistics</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">SUMMARY BY CONFERENCE TIER:"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
 <span class="n">summary</span> <span class="o">=</span> <span class="n">player_data</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'conference_tier'</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span>
     <span class="s1">'Player'</span><span class="p">:</span> <span class="s1">'count'</span><span class="p">,</span>
@@ -8194,7 +8209,7 @@ Marquez Valdes-Scantling American    73.300000        16.600000        6        
 <span class="n">summary</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Count'</span><span class="p">,</span> <span class="s1">'Avg YPG'</span><span class="p">,</span> <span class="s1">'Avg 40 Time'</span><span class="p">,</span> <span class="s1">'Avg Pick'</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">summary</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">✅ Visualization saved as 'wr_draft_scatter_by_pick.png'"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Visualization saved as 'wr_draft_scatter_by_pick.png'"</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -8226,7 +8241,7 @@ Pick range: 5 to 258
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>
-📊 SUMMARY BY CONFERENCE TIER:
+SUMMARY BY CONFERENCE TIER:
 ============================================================
                      Count  Avg YPG  Avg 40 Time  Avg Pick
 conference_tier                                           
@@ -8234,7 +8249,7 @@ ACC, BIG 12, PAC 12     62    71.05         4.48    128.21
 Other                   41    73.99         4.45    134.37
 SEC, BIG 10             64    66.27         4.45    106.92
 
-✅ Visualization saved as 'wr_draft_scatter_by_pick.png'
+Visualization saved as 'wr_draft_scatter_by_pick.png'
 </pre>
 </div>
 </div>
@@ -8247,9 +8262,9 @@ SEC, BIG 10             64    66.27         4.45    106.92
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><strong>LINKS</strong> <br/>
-<a href="https://quinng8.github.io/nfl-draft-analytics/">PORTFOLIO</a>
-<br/></p>
+<hr/>
+<h2>LINKS <br/></h2>
+<h4 id="PORTFOLIO"><a href="https://quinng8.github.io/nfl-draft-analytics/">PORTFOLIO</a><a class="anchor-link" href="#PORTFOLIO">¶</a></h4>
 </div>
 </div>
 </div>
