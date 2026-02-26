@@ -7802,30 +7802,23 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="NFL-Draft-Analysis:-WR-Draft-Capital-vs.-NFL-Production">NFL Draft Analysis: WR Draft Capital vs. NFL Production<a class="anchor-link" href="#NFL-Draft-Analysis:-WR-Draft-Capital-vs.-NFL-Production">¶</a></h1><h3 id="Goal:-Analyze-the-relationship-between-draft-position-and-subsequent-NFL-performance-for-wide-receivers.">Goal: Analyze the relationship between draft position and subsequent NFL performance for wide receivers.<a class="anchor-link" href="#Goal:-Analyze-the-relationship-between-draft-position-and-subsequent-NFL-performance-for-wide-receivers.">¶</a></h3><h4 id="Data-Sources-Needed:">Data Sources Needed:<a class="anchor-link" href="#Data-Sources-Needed:">¶</a></h4><ol>
-<li>Draft data (2017-2025 WRs) - Pick number, team, college</li>
-<li>Combine/pro-day data - Athletic testing</li>
-<li>NFL production data (NextGen) - Receiving yards, TDs, Separation, etc. (Players with 45+ Targets Between 2017-2025)</li>
-<li>College Receiving Stats (Top 300 in receiving yards by year)</li>
-</ol>
-<hr/>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p><strong>Analysis #1: Hit Rate By Round</strong></p>
-<p>I want a tiered system to determine if a receiver is a hit and to what extent that receiver has hit. Below I have estimated tiers: <br/></p>
-<p>Elite:	1,200+ yard season OR 2x 1,000+ yard seasons	Top 12 WR <br/>
-Hit:	1,000+ yard season OR 2x 700+ yard seasons	Solid starter <br/>
-Role:	500+ yard season OR 30+ YPG career	Contributes <br/>
-Bust:	Never hit 500 yards in a season	Didn't work out</p>
-<hr/>
+<h1 id="NFL-Draft-Analysis:-WR-Draft-Capital-vs.-NFL-Production">NFL Draft Analysis: WR Draft Capital vs. NFL Production<a class="anchor-link" href="#NFL-Draft-Analysis:-WR-Draft-Capital-vs.-NFL-Production">¶</a></h1><h2 id="Executive-Summary">Executive Summary<a class="anchor-link" href="#Executive-Summary">¶</a></h2><p><strong>Key Question:</strong> How do draft rounds correlate with NFL success for wide receivers?</p>
+<p><strong>Approach:</strong> Created a tiered classification system (Elite/Hit/Role/Bust) based on single-season yardage and touchdown thresholds, then analyzed 291 WRs drafted from 2017-2025.</p>
+<p><strong>Key Findings:</strong></p>
+<ul>
+<li><p><strong>Round 1 is the only reliable source of elite talent</strong> (16.2% elite rate), with 86.5% of first-rounders becoming at least solid starters (Elite + Hit + Role)</p>
+</li>
+<li><p><strong>Round 2 offers the best value among Day 2 picks</strong> - 31.0% bust rate vs. 58.8% in Round 3, with 4.8% still becoming elite</p>
+</li>
+<li><p><strong>The bust rate spikes after Round 2</strong> - from 31.0% in Round 2 to 58.8% in Round 3, then consistently above 70% in Rounds 4-7</p>
+</li>
+<li><p><strong>Day 3 WRs (Rounds 4-7) are lottery tickets</strong> - 70-90% bust rate, with elite talent appearing in only 3-4% of picks (and never after Round 5)</p>
+</li>
+<li><p><strong>53 players (18.2%) from 2024-2025 are flagged "Too Early"</strong> - this analysis will need updating as their careers develop</p>
+</li>
+</ul>
+<p><strong>Bottom Line:</strong> If you want an elite WR, you need to draft one in Round 1. If you want a solid starter, Round 2 is your best value. After Round 3, you're playing the odds - and the odds are terrible.</p>
+<h3 id="Goal">Goal<a class="anchor-link" href="#Goal">¶</a></h3><p>Analyze the relationship between draft position and subsequent NFL performance for wide receivers.</p>
 </div>
 </div>
 </div>
@@ -7857,7 +7850,7 @@ Bust:	Never hit 500 yards in a season	Didn't work out</p>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">'nfl_analytics.db'</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"Connected to database"</span><span class="p">)</span>
 
-<span class="c1"># list of files to load</span>
+<span class="c1"># dictionary mapping table names to their CSV file paths</span>
 <span class="n">files</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">'draft_picks'</span><span class="p">:</span> <span class="s1">'../data/NFLDraftPositionWR2011-2025.csv'</span><span class="p">,</span>
     <span class="s1">'nextgen'</span><span class="p">:</span> <span class="s1">'../data/NextGenWRStats2018-2025.csv'</span><span class="p">,</span>
@@ -7865,7 +7858,7 @@ Bust:	Never hit 500 yards in a season	Didn't work out</p>
     <span class="s1">'college'</span><span class="p">:</span> <span class="s1">'../data/CollegeReceivingStats2017-2025.csv'</span>
 <span class="p">}</span>
 
-<span class="c1"># load each file into SQLite</span>
+<span class="c1"># load each file into its own SQLite table</span>
 <span class="k">for</span> <span class="n">table_name</span><span class="p">,</span> <span class="n">file_path</span> <span class="ow">in</span> <span class="n">files</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
@@ -7907,21 +7900,15 @@ Connection closed
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<hr/>
-<p>This next cell will help me determine how to qualify which receivers are elite, hits, role players, or busts. <br/>
-I am going to get a distribution of receving yards to see what is considered average, above average, and below average. <br/></p>
-<p>Before deciding thresholds that make receivers elite, a hit, a role player, or a bust, I need to decide what those metrics are. To do so, I will run a distrubtion on yards and touchdowns of all receivers in the NextGen data. Because NextGen data has players with over 45 targets, all seasons with less than 45 targets will either be counted as a "lost season" and won't go towards the numbers.</p>
-<p>Here are some key methods</p>
-<ol>
-<li>NextGen Stats - Only 45+ targets</li>
-</ol>
-<p>If a WR doesn't get 45 targets in a season, they are most likely either:<br/></p>
+<h2 id="Determining-Tier-Thresholds">Determining Tier Thresholds<a class="anchor-link" href="#Determining-Tier-Thresholds">¶</a></h2><p>Before finalizing my tier definitions, I need to understand the distribution of receiving yards across all WR seasons in the NextGen data.</p>
+<p><strong>Why the 45-target filter?</strong> NextGen Stats only includes players with 45+ targets in a season. This is actually helpful because it automatically filters out:</p>
 <ul>
-<li>Injured</li>
-<li>Not good enough to get on the field</li>
-<li>A rookie who hasn't earned trust yet</li>
+<li>Players who were injured and missed significant time</li>
+<li>Players who weren't good enough to earn playing time</li>
+<li>Depth players who never became contributors</li>
 </ul>
-<p>Rookies sometimes take time. A 2024 draftee with 40 targets in Year 1 might be fine. We'll handle this with "Too Soon" flags. <br/></p>
+<p><strong>Important note on rookies:</strong> A rookie drafted in 2024 who gets 40 targets isn't necessarily a bust - they might just need time to develop. I'll handle this with a "Too Early" flag for recent draft classes.</p>
+<p>The distribution below will show me natural breakpoints in the data to validate my tier thresholds.</p>
 </div>
 </div>
 </div>
@@ -7936,9 +7923,12 @@ I am going to get a distribution of receving yards to see what is considered ave
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
+<span class="c1"># connect to database</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">'nfl_analytics.db'</span><span class="p">)</span>
 
-<span class="c1"># see yards distribution</span>
+<span class="c1"># distribution analysis to validate tier thresholds</span>
+<span class="c1"># this query groups WR seasons into yardage buckets</span>
+<span class="c1"># and shows how many seasons/players fall into each</span>
 <span class="n">query</span> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">SELECT </span>
 <span class="s2">    CASE </span>
@@ -7993,48 +7983,51 @@ yards_tier  seasons  players  avg_tds
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<hr/>
-<h3 id="Single-Season-Tiers">Single Season Tiers<a class="anchor-link" href="#Single-Season-Tiers">¶</a></h3><p>Based on my findings, this is how I will determine certain tiers of receivers:</p>
+<h2 id="Methodology:-Defining-WR-Tiers">Methodology: Defining WR Tiers<a class="anchor-link" href="#Methodology:-Defining-WR-Tiers">¶</a></h2><p>Based on the distribution analysis above, I established the following tier thresholds:</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Level</th>
-<th style="text-align:center">Criteria</th>
-<th style="text-align:center">Details</th>
+<th>Tier</th>
+<th>Yards Threshold</th>
+<th>Touchdown Threshold</th>
+<th>Supporting Data</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">Elite</td>
-<td style="text-align:center">1,200+ yard season OR 10+ TDs</td>
-<td style="text-align:center">Only 40 players ever reached this</td>
+<td><strong>Elite</strong></td>
+<td>1,200+ yards</td>
+<td>OR 10+ TDs</td>
+<td>Only 64 seasons (40 players) reached this level - true difference-makers</td>
 </tr>
 <tr>
-<td style="text-align:left">Hit</td>
-<td style="text-align:center">800+ yard season OR 6+ TDs</td>
-<td style="text-align:center">93 players, avg 6 TDs - clear starter level</td>
+<td><strong>Hit</strong></td>
+<td>800-1,199 yards</td>
+<td>OR 6-9 TDs</td>
+<td>205 seasons (93 players) - clear starter production</td>
 </tr>
 <tr>
-<td style="text-align:left">Role</td>
-<td style="text-align:center">400+ yard season OR 3+ TDs</td>
-<td style="text-align:center">199 players, solid contributor</td>
+<td><strong>Role</strong></td>
+<td>400-799 yards</td>
+<td>OR 3-5 TDs</td>
+<td>365 seasons (199 players) - solid contributors</td>
 </tr>
 <tr>
-<td style="text-align:left">Bust</td>
-<td style="text-align:center">Never hit 400 yards OR never in NextGen</td>
-<td style="text-align:center">95 players had a sub-400 season in NextGen</td>
-</tr>
-<tr>
-<td style="text-align:left">Too Early</td>
-<td style="text-align:center">Players drafted from 2024 or 2025 draft who do not reach any tier</td>
-<td style="text-align:center"></td>
+<td><strong>Bust</strong></td>
+<td>Never hit 400 yards</td>
+<td>AND never hit 3 TDs</td>
+<td>111 seasons (95 players) - never became consistent contributors</td>
 </tr>
 </tbody>
 </table>
-<br/>
-<p><strong>First Step</strong>
-<br/>
-The first step is joining the Draft Picks table with the NextGen table</p>
+<p><strong>Important Notes:</strong></p>
+<ul>
+<li><strong>Why these numbers?</strong> The 400/800/1200 thresholds represent natural breakpoints in the data where the number of seasons and average touchdowns meaningfully change.</li>
+<li><strong>45-target filter:</strong> NextGen Stats only includes players with 45+ targets, so "Bust" here means they either never reached that threshold or performed below it when they did.</li>
+<li><strong>Recent draftees (2024-2025):</strong> Players from these classes who haven't yet reached Hit/Elite status are flagged as "Too Early" - they need more time to develop.</li>
+</ul>
+<p><strong>First Step: Joining Draft and Production Data</strong>
+Now that I have my tier definitions, I need to connect each drafted player to their NFL seasons.</p>
 </div>
 </div>
 </div>
@@ -8051,7 +8044,8 @@ The first step is joining the Draft Picks table with the NextGen table</p>
 
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">'nfl_analytics.db'</span><span class="p">)</span>
 
-<span class="c1"># check the join with correct columns</span>
+<span class="c1"># validate that our join is working correctly</span>
+<span class="c1"># this sample will show us if player names are matching properly</span>
 <span class="n">query_check</span> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">SELECT </span>
 <span class="s2">    d.Name as draft_name,</span>
@@ -8070,10 +8064,10 @@ The first step is joining the Draft Picks table with the NextGen table</p>
 <span class="s2">"""</span>
 
 <span class="n">sample</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">query_check</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"🔍 SAMPLE OF JOIN RESULTS:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"SAMPLE OF JOIN RESULTS:"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">sample</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
 
-<span class="c1"># count how many have matches</span>
+<span class="c1"># now check the match rate</span>
 <span class="n">query_count</span> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">SELECT </span>
 <span class="s2">    COUNT(DISTINCT d.Name) as total_drafted,</span>
@@ -8085,7 +8079,7 @@ The first step is joining the Draft Picks table with the NextGen table</p>
 <span class="s2">"""</span>
 
 <span class="n">counts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">query_count</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">📊 MATCH STATS:"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">MATCH STATS:"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">counts</span><span class="p">)</span>
 
 <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
@@ -8149,19 +8143,13 @@ The first step is joining the Draft Picks table with the NextGen table</p>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>I limited this query to just 30 players, checking to make sure that the query was pulling everything that we wanted.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3>REAL DEAL <br/></h3>
-<p>In this next query, I will try to find the results that I am looking for!</p>
+<h2 id="Full-Analysis:-Hit-Rates-by-Draft-Round">Full Analysis: Hit Rates by Draft Round<a class="anchor-link" href="#Full-Analysis:-Hit-Rates-by-Draft-Round">¶</a></h2><p>Now that I've validated the join is working correctly, I'll run the complete analysis. This query will:</p>
+<ol>
+<li><strong>Classify each player's best season</strong> using the tier thresholds established above</li>
+<li><strong>Determine final career tier</strong> based on their best seasons</li>
+<li><strong>Flag recent draftees</strong> (2024-2025) as "Too Early" if they haven't yet broken through</li>
+<li><strong>Calculate hit rates by round</strong> to identify where teams find the best value</li>
+</ol>
 </div>
 </div>
 </div>
@@ -8303,9 +8291,15 @@ Too Early (2024-2025): 60
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<hr/>
-<h3>Recalibration <br/></h3>
-<p>This method didn't work quite right, so I decided to go a different route and measure players season tiering numerically.</p>
+<h2 id="Fixing-the-Classification-Logic">Fixing the Classification Logic<a class="anchor-link" href="#Fixing-the-Classification-Logic">¶</a></h2><p>My first attempt had a flaw: using <code>MAX()</code> on string values sorts alphabetically, not by tier quality. This misclassified players (e.g., 'Hit' &gt; 'Elite' alphabetically).</p>
+<p><strong>The fix:</strong> Assign numeric scores to tiers:</p>
+<ul>
+<li>4 = Elite</li>
+<li>3 = Hit</li>
+<li>2 = Role</li>
+<li>1 = Below Role</li>
+</ul>
+<p>Now <code>MAX()</code> will correctly identify each player's best season. The query below implements this fix.</p>
 </div>
 </div>
 </div>
@@ -8451,8 +8445,8 @@ Too Early (2024-2025): 56
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<hr/>
-<h3 id="Checking-My-Work">Checking My Work<a class="anchor-link" href="#Checking-My-Work">¶</a></h3><p>In order to make sure this data makes sense, I wanted to manually check myself. So I printed out all the receivers drafted in round five to make sure there was truly only one elite player drafted within the past 8 years in that round (Puka Nacua).</p>
+<h2 id="Validation:-Manual-Check-of-5th-Round-%22Elite%22-WRs">Validation: Manual Check of 5th Round "Elite" WRs<a class="anchor-link" href="#Validation:-Manual-Check-of-5th-Round-%22Elite%22-WRs">¶</a></h2><p>My analysis showed only one elite receiver drafted in the 5th round since 2017: Puka Nacua. Before accepting this finding, I wanted to verify it manually by examining all 5th round WR selections.</p>
+<p><strong>Why this matters:</strong> If I missed someone, my conclusion about 5th round value would be wrong. This check ensures accuracy.</p>
 </div>
 </div>
 </div>
@@ -8469,6 +8463,7 @@ Too Early (2024-2025): 56
 
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s1">'nfl_analytics.db'</span><span class="p">)</span>
 
+<span class="c1"># pull all 5th round WRs so I can manually check for any potential Elite players I might have missed</span>
 <span class="n">query</span> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">SELECT </span>
 <span class="s2">    Year,</span>
@@ -8491,7 +8486,7 @@ Too Early (2024-2025): 56
 <span class="nb">print</span><span class="p">(</span><span class="s2">"5TH ROUND WR DRAFT PICKS (2017-2025)"</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">80</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">fifth_round</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">📊 Total 5th round WRs: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">fifth_round</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Total 5th round WRs: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">fifth_round</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
 <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
@@ -8558,8 +8553,8 @@ Too Early (2024-2025): 56
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<hr/>
-<h3 id="One-More-Check">One More Check<a class="anchor-link" href="#One-More-Check">¶</a></h3><p>I wanted to do one more check just to make sure, so I wrote a query to check the total number of "Elite" receivers to make sure we got the right number.</p>
+<h2 id="Validation:-Verifying-Total-Elite-Receiver-Count">Validation: Verifying Total Elite Receiver Count<a class="anchor-link" href="#Validation:-Verifying-Total-Elite-Receiver-Count">¶</a></h2><p>My round-by-round analysis showed 29 elite receivers total (16+6+5+1+1). I want to verify this by pulling the complete list and spot-checking a few names.</p>
+<p><strong>What I'm looking for:</strong> Does the list pass the "eye test"? Are there any players classified as Elite who shouldn't be? Any missing who should be included?</p>
 </div>
 </div>
 </div>
@@ -8568,7 +8563,7 @@ Too Early (2024-2025): 56
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
@@ -8603,7 +8598,7 @@ Too Early (2024-2025): 56
 <span class="n">checking</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="n">checking</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">checking</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n\n</span><span class="s2">TOTAL ELITE RECEIVERS: "</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">checking</span><span class="p">))</span>
 
 
 <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
@@ -8649,7 +8644,9 @@ JuJu Smith-Schuster           4        1383         9                   6      2
        Chris Godwin           4        1333         9                   8      3       2017
         Cooper Kupp           4        1947        16                   8      3       2017
      Kenny Golladay           4        1190        11                   3      3       2017
-29
+
+
+TOTAL ELITE RECEIVERS:  29
 </pre>
 </div>
 </div>
@@ -8663,8 +8660,7 @@ JuJu Smith-Schuster           4        1383         9                   6      2
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <hr/>
-<h3>Deeper Dive <br/></h3>
-<p>Now that we know our findings match our data, we wanted to take a deeper and more analytical dive. We just gave players labels based on their best season in teh previous query. In this next cell, we will count the number of seasons where each player has an elite yards and/or td season, as well as hit seasons and role seasons. From there, we will determine how many seasons of elite play it will take to categorize a player as elite, etc. We are going for more consistency from players rather than just a peak season. <br/></p>
+<h2 id="Multi-Season-Analysis:-Rewarding-Consistency">Multi-Season Analysis: Rewarding Consistency<a class="anchor-link" href="#Multi-Season-Analysis:-Rewarding-Consistency">¶</a></h2><p>Now that I know the findings match the data, I wanted to take a deeper and more analytical dive. The previous analysis classified players based on their single best season. But a true elite receiver produces year after year. This query counts seasons at each tier and applies the new criteria shown below.</p>
 <p>Here is our new criteria: <br/></p>
 <table>
 <thead>
@@ -8706,7 +8702,7 @@ JuJu Smith-Schuster           4        1383         9                   6      2
 <td style="text-align:left">2+ Elite YDS OR tds, <br/>OR 1 Elite YDS AND 1 Elite tds</td>
 </tr>
 <tr>
-<td style="text-align:left">HIT</td>
+<td style="text-align:left">Hit</td>
 <td style="text-align:left">1 Elite YDS AND 1 Hit YDS, <br/>OR 1 Elite TDs AND 1 Hit TDs, <br/>OR 1 Elite YDS AND 1 Hit TDs,<br/>OR 1 Elite TDs and 1 Hit YDS</td>
 </tr>
 <tr>
@@ -8729,7 +8725,7 @@ JuJu Smith-Schuster           4        1383         9                   6      2
 <td style="text-align:left">Elite YDS AND TDs</td>
 </tr>
 <tr>
-<td style="text-align:left">HIT</td>
+<td style="text-align:left">Hit</td>
 <td style="text-align:left">Elite YDS AND Hit TDs, <br/>OR Hit YDS AND Elite TDs</td>
 </tr>
 <tr>
@@ -8999,6 +8995,48 @@ Round 6.0: Elite=0.0%, Hit=0.0%, Role=18.9%, Bust=81.1%
 Round 7.0: Elite=0.0%, Hit=3.1%, Role=6.3%, Bust=90.6%
 </pre>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Key-Takeaways">Key Takeaways<a class="anchor-link" href="#Key-Takeaways">¶</a></h2><table>
+<thead>
+<tr>
+<th>Round</th>
+<th>Best Description</th>
+<th>Draft Strategy Implication</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Elite or bust? Actually no - 86.5% become starters</td>
+<td>Safe investment, but elite talent still rare</td>
+</tr>
+<tr>
+<td>2</td>
+<td>High upside with manageable risk</td>
+<td>Best value round - target WRs here</td>
+</tr>
+<tr>
+<td>3</td>
+<td>58.8% bust rate, but 20.5% become solid starters</td>
+<td>Acceptable risk for the upside</td>
+</tr>
+<tr>
+<td>4-7</td>
+<td>70-90% bust rate</td>
+<td>Lottery tickets - draft many, expect most to fail</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Next Up:</strong> In Notebook 02, I examine what drives draft position by looking at college production. Does the NFL draft for production or potential?</p>
 </div>
 </div>
 </div>
