@@ -7802,123 +7802,124 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Predictive-NFL-Success">Predictive NFL Success<a class="anchor-link" href="#Predictive-NFL-Success">¶</a></h1><p><strong>Goal:</strong> Identify which pre-draft metrics (college production, combine athleticism)
-best predict NFL success for wide receivers.</p>
-<p>This analysis will help answer questions like:</p>
-<ul>
-<li>Do elite WRs share common athletic thresholds?</li>
-<li>Is college production or combine testing more predictive?</li>
-<li>Can we identify "bust" warning signs before the draft?</li>
-</ul>
-<p>In this notebook, I will use a blend of college production and combine production to try and find a correlation of which receivers become successful in the NFL.
-<br/><br/>
-To do so, I will use similar metrics to those that I used in my first notebook, 01_draft_hit_rate. <br/><br/></p>
-<p>This Notebook is important to me for two reasons:</p>
+<h1 id="Predictive-NFL-Success:-Which-Pre-Draft-Metrics-Actually-Matter?">Predictive NFL Success: Which Pre-Draft Metrics Actually Matter?<a class="anchor-link" href="#Predictive-NFL-Success:-Which-Pre-Draft-Metrics-Actually-Matter?">¶</a></h1><h2 id="Goal">Goal<a class="anchor-link" href="#Goal">¶</a></h2><p>After establishing that draft capital (Notebook 01) and athletic testing (Notebook 03) drive <em>where</em> receivers get drafted, this notebook asks a different question: <strong>What actually predicts success once they're in the league?</strong></p>
+<p>Using the tier classifications from Notebook 01 (Elite/Hit/Role/Bust), I'll analyze which pre-draft metrics—college production, combine athleticism, or conference pedigree—best separate NFL stars from busts.</p>
+<p>This analysis serves two purposes:</p>
 <ol>
-<li>I want to determine if my criteria/metrics for tiers of receivers have merit</li>
-<li>I want to determine which stats are determining factors of my metrics</li>
+<li><strong>Validate my tier criteria</strong> — Do the metrics I used to classify NFL success align with traditional scouting wisdom?</li>
+<li><strong>Identify predictive stats</strong> — Which numbers should teams actually care about on draft day?</li>
 </ol>
-<br/>
-<p>As a reminder, this is the criteria:<br/></p>
+<hr/>
+<h2 id="Methodology:-NFL-Tier-Classifications">Methodology: NFL Tier Classifications<a class="anchor-link" href="#Methodology:-NFL-Tier-Classifications">¶</a></h2><p>As a reminder from Notebook 01, I classified every drafted wide receiver (2017-2025) into one of four tiers based on their NFL production:</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Level</th>
-<th style="text-align:left">Criteria</th>
+<th>Tier</th>
+<th>Criteria</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">Elite</td>
-<td style="text-align:left">2+ seasons with elite YDS (1200+), <br/>OR 2+ seasons with elite TDs (10+), <br/>OR 1 season with elite YDS AND 1 season of elite TDs</td>
+<td><strong>Elite</strong></td>
+<td>• 2+ seasons with 1,200+ yards <strong>OR</strong> 10+ TDs<br/>• OR 1 season with 1,200+ yards <strong>AND</strong> 1 season with 10+ TDs</td>
 </tr>
 <tr>
-<td style="text-align:left">Hit</td>
-<td style="text-align:left">2+ seasons with hit YDS (800-1199),  <br/>OR 2+ seasons with hit TDs (6-9), <br/>OR 1 season with elite YDS AND 1 season of hit TDs<br/>OR 1 season with hit YDS AND 1 season of role TDs</td>
+<td><strong>Hit</strong></td>
+<td>• 2+ seasons with 800-1,199 yards <strong>OR</strong> 6-9 TDs<br/>• OR 1 season with elite yards <strong>AND</strong> 1 season with hit TDs<br/>• OR 1 season with hit yards <strong>AND</strong> 1 season with role TDs</td>
 </tr>
 <tr>
-<td style="text-align:left">Role</td>
-<td style="text-align:left">2+ seasons with role YDS (400-799), <br/>OR 2+ seasons with role TDs (3-5), <br/>OR 1 season with hit YDS AND 1 season of role TDs<br/>OR 1 season with role YDS AND 1 season of hit TDs</td>
+<td><strong>Role</strong></td>
+<td>• 2+ seasons with 400-799 yards <strong>OR</strong> 3-5 TDs<br/>• OR 1 season with hit yards <strong>AND</strong> 1 season with role TDs<br/>• OR 1 season with role yards <strong>AND</strong> 1 season with hit TDs</td>
 </tr>
 <tr>
-<td style="text-align:left">Bust</td>
-<td style="text-align:left">Never hit 400 yards OR never in NextGen</td>
+<td><strong>Bust</strong></td>
+<td>Never hit 400 yards OR never appeared in NextGen Stats (45+ target threshold)</td>
 </tr>
 </tbody>
 </table>
-<h5 id="Recent-Draftees-(2024-2025):">Recent Draftees (2024-2025):<a class="anchor-link" href="#Recent-Draftees-(2024-2025):">¶</a></h5><p><strong>2024</strong></p>
+<h3 id="Handling-Recent-Draftees-(2024-2025)">Handling Recent Draftees (2024-2025)<a class="anchor-link" href="#Handling-Recent-Draftees-(2024-2025)">¶</a></h3><p>Since players from the most recent draft classes haven't had time to fully develop, I applied modified criteria:</p>
+<p><strong>2024 Draftees</strong></p>
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Level</th>
-<th style="text-align:left">Criteria</th>
+<th>Tier</th>
+<th>Criteria</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">Elite</td>
-<td style="text-align:left">2+ Elite YDS OR tds, <br/>OR 1 Elite YDS AND 1 Elite tds</td>
+<td><strong>Elite</strong></td>
+<td>2+ elite yard/TD seasons <strong>OR</strong> 1 elite yard <strong>AND</strong> 1 elite TD season</td>
 </tr>
 <tr>
-<td style="text-align:left">HIT</td>
-<td style="text-align:left">1 Elite YDS AND 1 Hit YDS, <br/>OR 1 Elite TDs AND 1 Hit TDs, <br/>OR 1 Elite YDS AND 1 Hit TDs,<br/>OR 1 Elite TDs and 1 Hit YDS</td>
+<td><strong>Hit</strong></td>
+<td>1 elite yard <strong>AND</strong> 1 hit yard, <strong>OR</strong> 1 elite TD <strong>AND</strong> 1 hit TD, <strong>OR</strong> 1 elite yard <strong>AND</strong> 1 hit TD, <strong>OR</strong> 1 elite TD <strong>AND</strong> 1 hit yard</td>
 </tr>
 <tr>
-<td style="text-align:left">Too Soon</td>
-<td style="text-align:left">1 Hit yds OR tds (or anything below)</td>
+<td><strong>Too Early</strong></td>
+<td>1 hit yard/TD season (or anything below)</td>
 </tr>
 </tbody>
 </table>
-<p><strong>2025</strong></p>
+<p><strong>2025 Draftees</strong></p>
 <table>
 <thead>
 <tr>
-<th style="text-align:left">Level</th>
-<th style="text-align:left">Criteria</th>
+<th>Tier</th>
+<th>Criteria</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">Elite</td>
-<td style="text-align:left">Elite YDS AND TDs</td>
+<td><strong>Elite</strong></td>
+<td>1 elite yard <strong>AND</strong> 1 elite TD season</td>
 </tr>
 <tr>
-<td style="text-align:left">HIT</td>
-<td style="text-align:left">Elite YDS AND Hit TDs, <br/>OR Hit YDS AND Elite TDs</td>
+<td><strong>Hit</strong></td>
+<td>1 elite yard <strong>AND</strong> 1 hit TD, <strong>OR</strong> 1 hit yard <strong>AND</strong> 1 elite TD</td>
 </tr>
 <tr>
-<td style="text-align:left">Too Soon</td>
-<td style="text-align:left">Anything Else</td>
+<td><strong>Too Early</strong></td>
+<td>Anything else</td>
 </tr>
 </tbody>
 </table>
 <hr/>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Data-Sources">Data Sources<a class="anchor-link" href="#Data-Sources">¶</a></h3><ul>
-<li><strong>College stats</strong>: 2017-2025 (YPG, Y/R, TDs, Conference)</li>
-<li><strong>Combine data</strong>: 2017-2025 (40 time, Vertical, Bench, 3-cone)</li>
-<li><strong>NFL outcomes</strong>: Tier classifications from Notebook 01</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="First-Steps">First Steps<a class="anchor-link" href="#First-Steps">¶</a></h3><p>First I will need to run my query again to find which receivers fall into each category. This query adds logic from my first notebook while also adding extra varible to test, including combine and college statistics.</p>
+<h2 id="Data-Sources">Data Sources<a class="anchor-link" href="#Data-Sources">¶</a></h2><p>This analysis combines three core datasets:</p>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Years</th>
+<th>Key Metrics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>College Stats</strong></td>
+<td>2017-2025</td>
+<td>Yards per game, Yards per catch, Peak TDs, Conference</td>
+</tr>
+<tr>
+<td><strong>Combine Results</strong></td>
+<td>2017-2025</td>
+<td>40 time, Vertical, Bench, 3-cone, Broad jump</td>
+</tr>
+<tr>
+<td><strong>NFL Outcomes</strong></td>
+<td>2017-2025</td>
+<td>Tier classifications from Notebook 01</td>
+</tr>
+</tbody>
+</table>
+<hr/>
+<h2 id="Building-the-Dataset">Building the Dataset<a class="anchor-link" href="#Building-the-Dataset">¶</a></h2><p>To analyze which pre-draft metrics predict NFL success, I needed to join college production, combine athletic testing, and draft information with my NFL tier classifications. The query below accomplishes this by:</p>
+<ol>
+<li>Calculating each player's NFL tier based on their career production</li>
+<li>Aggregating their college stats (YPG, YPC, peak TDs)</li>
+<li>Pulling their combine testing data</li>
+<li>Combining everything into a single table for analysis</li>
+</ol>
 </div>
 </div>
 </div>
@@ -7927,7 +7928,7 @@ To do so, I will use similar metrics to those that I used in my first notebook, 
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
@@ -7946,6 +7947,10 @@ To do so, I will use similar metrics to those that I used in my first notebook, 
 <span class="s2">        SUM(CASE WHEN n.TD &gt;= 10 THEN 1 ELSE 0 END) as elite_td_seasons,</span>
 <span class="s2">        SUM(CASE WHEN n.TD &gt;= 6 THEN 1 ELSE 0 END) as hit_td_seasons,</span>
 <span class="s2">        SUM(CASE WHEN n.TD &gt;= 3 THEN 1 ELSE 0 END) as role_td_seasons,</span>
+<span class="s2">        AVG(n.CUSH) as avg_cushion,</span>
+<span class="s2">        AVG(n.SEP) as avg_separation,</span>
+<span class="s2">        AVG(n.'TAY%') as avg_team_yard_percentage,</span>
+<span class="s2">        AVG(n.plusMinus) as avg_yac_above_expected,</span>
 <span class="s2">        COUNT(DISTINCT n.YEAR) as seasons_in_nextgen</span>
 <span class="s2">    FROM nextgen n</span>
 <span class="s2">    WHERE n.POS = 'WR'</span>
@@ -8027,6 +8032,10 @@ To do so, I will use similar metrics to those that I used in my first notebook, 
 <span class="s2">        pt.elite_td_seasons,</span>
 <span class="s2">        pt.hit_td_seasons,</span>
 <span class="s2">        pt.role_td_seasons,</span>
+<span class="s2">        pt.avg_cushion,</span>
+<span class="s2">        pt.avg_separation,</span>
+<span class="s2">        pt.avg_team_yard_percentage,</span>
+<span class="s2">        pt.avg_yac_above_expected,</span>
 <span class="s2">        pt.seasons_in_nextgen</span>
 <span class="s2">    FROM draft_picks d</span>
 <span class="s2">    LEFT JOIN player_tiers pt ON d.Name = pt.NAME</span>
@@ -8058,6 +8067,10 @@ To do so, I will use similar metrics to those that I used in my first notebook, 
 <span class="s2">    dp.elite_td_seasons,</span>
 <span class="s2">    dp.hit_td_seasons,</span>
 <span class="s2">    dp.role_td_seasons,</span>
+<span class="s2">    dp.avg_cushion,</span>
+<span class="s2">    dp.avg_separation,</span>
+<span class="s2">    dp.avg_team_yard_percentage,</span>
+<span class="s2">    dp.avg_yac_above_expected,</span>
 <span class="s2">    dp.seasons_in_nextgen</span>
 <span class="s2">FROM drafted_players dp</span>
 <span class="s2">LEFT JOIN college_stats cs ON dp.Player = cs.Player</span>
@@ -8068,9 +8081,16 @@ To do so, I will use similar metrics to those that I used in my first notebook, 
 <span class="c1"># execute and display</span>
 <span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql_query</span><span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">conn</span><span class="p">)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">"ELITE AND HIT RECEIVERS (2017-2025)"</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">[(</span><span class="n">results</span><span class="p">[</span><span class="s1">'nfl_tier'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'Elite'</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">results</span><span class="p">[</span><span class="s1">'nfl_tier'</span><span class="p">]</span> <span class="o">==</span> <span class="s1">'Hit'</span><span class="p">)])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="s2">"="</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"AVERAGE METRICS BY NFL TIER"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+
+<span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'college_ypg'</span><span class="p">,</span> <span class="s1">'yards_per_catch'</span><span class="p">,</span> <span class="s1">'peak_college_td'</span><span class="p">,</span> 
+           <span class="s1">'forty_time'</span><span class="p">,</span> <span class="s1">'cone'</span><span class="p">,</span> <span class="s1">'broad_jump'</span><span class="p">,</span> <span class="s1">'avg_cushion'</span><span class="p">,</span> 
+           <span class="s1">'avg_separation'</span><span class="p">,</span> <span class="s1">'avg_team_yard_percentage'</span><span class="p">,</span> <span class="s1">'avg_yac_above_expected'</span><span class="p">]</span>
+
+<span class="n">summary</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'nfl_tier'</span><span class="p">)[</span><span class="n">metrics</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">summary</span><span class="p">)</span>
 
 
 <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
@@ -8086,259 +8106,33 @@ To do so, I will use similar metrics to those that I used in my first notebook, 
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>ELITE AND HIT RECEIVERS (2017-2025)
-====================================================================================================
-                  Player  draft_year  Round  Pick nfl_tier  college_ypg  \
-138         Brian Thomas        2024      1    23    Elite          NaN   
-139   Jaxon Smith-Njigba        2023      1    20    Elite   123.500000   
-140           Puka Nacua        2023      5   177    Elite    68.250000   
-141        Ja'Marr Chase        2021      1     5    Elite   127.100000   
-142    Amon-Ra St. Brown        2021      4   112    Elite    74.133333   
-143          CeeDee Lamb        2020      1    17    Elite    80.800000   
-144     Justin Jefferson        2020      1    22    Elite    85.000000   
-145          Tee Higgins        2020      2    33    Elite    70.100000   
-146           A.J. Brown        2019      2    51    Elite   107.150000   
-147        Calvin Ridley        2018      1    26    Elite    69.100000   
-148          Cooper Kupp        2017      3    69    Elite          NaN   
-149         Malik Nabers        2024      1     6      Hit    77.066667   
-150        Ladd McConkey        2024      2    34      Hit    44.566667   
-151     Quentin Johnston        2023      1    21      Hit    66.966667   
-152          Zay Flowers        2023      1    22      Hit    77.700000   
-153       Jordan Addison        2023      1    23      Hit    86.633333   
-154          Jayden Reed        2023      2    50      Hit    64.025000   
-155         Drake London        2022      1     8      Hit    87.600000   
-156       Garrett Wilson        2022      1    10      Hit    72.500000   
-157          Chris Olave        2022      1    11      Hit    80.900000   
-158     Jameson Williams        2022      1    12      Hit   104.800000   
-159     Christian Watson        2022      2    34      Hit          NaN   
-160       George Pickens        2022      2    52      Hit    58.000000   
-161          Alec Pierce        2022      2    53      Hit    54.066667   
-162          Romeo Doubs        2022      4   132      Hit    78.575000   
-163        Jaylen Waddle        2021      1     6      Hit    66.033333   
-164        DeVonta Smith        2021      1    10      Hit    96.300000   
-165         Nico Collins        2021      3    89      Hit    54.700000   
-166          Jerry Jeudy        2020      1    15      Hit    88.600000   
-167        Brandon Aiyuk        2020      1    25      Hit    67.900000   
-168      Michael Pittman        2020      2    34      Hit          NaN   
-169       Chase Claypool        2020      2    49      Hit    64.500000   
-170        Gabriel Davis        2020      4   128      Hit    85.650000   
-171       Darnell Mooney        2020      5   173      Hit    60.366667   
-172       Jauan Jennings        2020      7   217      Hit    55.500000   
-173       Marquise Brown        2019      1    25      Hit    89.150000   
-174         Deebo Samuel        2019      2    36      Hit    73.500000   
-175      Diontae Johnson        2019      3    66      Hit    74.900000   
-176       Terry McLaurin        2019      3    76      Hit    40.600000   
-177           D.J. Moore        2018      1    24      Hit    86.100000   
-178     Courtland Sutton        2018      2    40      Hit    83.500000   
-179       Christian Kirk        2018      2    47      Hit    70.700000   
-180       Michael Gallup        2018      3    81      Hit   108.700000   
-181          Corey Davis        2017      1     5      Hit          NaN   
-182        Mike Williams        2017      1     7      Hit          NaN   
-183  JuJu Smith-Schuster        2017      2    62      Hit          NaN   
-184         Chris Godwin        2017      3    84      Hit          NaN   
-185       Kenny Golladay        2017      3    96      Hit          NaN   
+<pre>
+============================================================
+AVERAGE METRICS BY NFL TIER
+============================================================
+           college_ypg  yards_per_catch  peak_college_td  forty_time  cone  \
+nfl_tier                                                                     
+Bust             70.47            15.29             8.49        4.48  7.01   
+Elite            89.46            16.64            11.44        4.46  6.87   
+Hit              74.00            15.96            10.70        4.46  6.97   
+Role             72.24            15.01             8.68        4.44  6.93   
+Too Early        61.74            14.88             8.19        4.43  6.86   
 
-     yards_per_catch  peak_college_td    conference_tier  forty_time  ...  \
-138              NaN              NaN                NaN        4.33  ...   
-139        16.900000              9.0  Top 2 Conferences         NaN  ...   
-140        15.850000              6.0              Other         NaN  ...   
-141        21.200000             20.0  Top 2 Conferences        4.34  ...   
-142        12.566667              7.0            Power 5        4.51  ...   
-143        18.900000             14.0            Power 5        4.50  ...   
-144        15.050000             18.0  Top 2 Conferences        4.43  ...   
-145        17.850000             13.0            Power 5         NaN  ...   
-146        16.100000             11.0  Top 2 Conferences        4.49  ...   
-147        15.300000              5.0  Top 2 Conferences        4.43  ...   
-148              NaN              NaN                NaN        4.62  ...   
-149        15.533333             14.0  Top 2 Conferences         NaN  ...   
-150        14.466667              7.0  Top 2 Conferences        4.39  ...   
-151        19.700000              6.0            Power 5         NaN  ...   
-152        15.566667             12.0            Power 5        4.42  ...   
-153        13.933333             17.0            Power 5        4.49  ...   
-154        13.875000             10.0  Top 2 Conferences        4.45  ...   
-155        14.000000              7.0            Power 5         NaN  ...   
-156        15.433333             12.0  Top 2 Conferences        4.38  ...   
-157        15.433333             13.0  Top 2 Conferences        4.39  ...   
-158        19.900000             15.0  Top 2 Conferences         NaN  ...   
-159              NaN              NaN                NaN        4.36  ...   
-160        14.550000              8.0  Top 2 Conferences        4.47  ...   
-161        17.700000              7.0              Other        4.41  ...   
-162        14.775000             11.0              Other         NaN  ...   
-163        18.966667              7.0  Top 2 Conferences         NaN  ...   
-164        16.966667             23.0  Top 2 Conferences         NaN  ...   
-165        18.150000              7.0  Top 2 Conferences        4.43  ...   
-166        17.200000             14.0  Top 2 Conferences        4.45  ...   
-167        16.350000              8.0            Power 5        4.50  ...   
-168              NaN              NaN                NaN        4.52  ...   
-169        14.250000             13.0              Other        4.42  ...   
-170        16.300000             12.0              Other        4.54  ...   
-171        17.733333              8.0              Other        4.38  ...   
-172        15.500000              8.0  Top 2 Conferences        4.72  ...   
-173        18.400000             10.0            Power 5         NaN  ...   
-174        14.200000             11.0  Top 2 Conferences        4.48  ...   
-175        16.400000             13.0              Other        4.53  ...   
-176        17.500000             11.0  Top 2 Conferences        4.35  ...   
-177        12.900000              8.0  Top 2 Conferences        4.42  ...   
-178        16.000000             12.0              Other        4.54  ...   
-179        12.900000             10.0  Top 2 Conferences        4.47  ...   
-180        14.100000              7.0              Other        4.51  ...   
-181              NaN              NaN                NaN         NaN  ...   
-182              NaN              NaN                NaN         NaN  ...   
-183              NaN              NaN                NaN        4.54  ...   
-184              NaN              NaN                NaN        4.42  ...   
-185              NaN              NaN                NaN        4.50  ...   
+           broad_jump  avg_cushion  avg_separation  avg_team_yard_percentage  \
+nfl_tier                                                                       
+Bust           123.91         6.16            2.96                     14.21   
+Elite          122.62         6.08            2.91                     29.88   
+Hit            123.96         6.07            2.84                     26.66   
+Role           125.92         6.23            3.01                     19.24   
+Too Early      125.34         6.41            3.26                     14.04   
 
-     broad_jump  cone  Shuttle  elite_yard_seasons  hit_yard_seasons  \
-138       126.0   NaN      NaN                 1.0               1.0   
-139         NaN   NaN      NaN                 1.0               2.0   
-140         NaN   NaN      NaN                 2.0               3.0   
-141       132.0  6.96     3.99                 4.0               5.0   
-142       127.0  6.88     4.17                 3.0               5.0   
-143       124.0   NaN      NaN                 2.0               6.0   
-144       126.0   NaN      NaN                 4.0               6.0   
-145         NaN   NaN      NaN                 0.0               5.0   
-146       120.0   NaN      NaN                 2.0               7.0   
-147       110.0  6.88     4.41                 1.0               5.0   
-148       116.0  6.75     4.08                 1.0               4.0   
-149         NaN   NaN      NaN                 1.0               1.0   
-150       124.0   NaN      NaN                 0.0               1.0   
-151         NaN   NaN      NaN                 0.0               0.0   
-152       127.0   NaN      NaN                 1.0               3.0   
-153       122.0   NaN      NaN                 0.0               2.0   
-154       121.0   NaN     4.29                 0.0               1.0   
-155         NaN   NaN      NaN                 1.0               4.0   
-156       123.0   NaN     4.36                 0.0               3.0   
-157       124.0   NaN      NaN                 0.0               3.0   
-158         NaN   NaN      NaN                 0.0               2.0   
-159       136.0   NaN      NaN                 0.0               0.0   
-160       125.0   NaN      NaN                 1.0               4.0   
-161       129.0  7.13     4.28                 0.0               2.0   
-162         NaN   NaN      NaN                 0.0               0.0   
-163         NaN   NaN      NaN                 1.0               4.0   
-164         NaN   NaN      NaN                 1.0               5.0   
-165       125.0  6.78     4.29                 1.0               3.0   
-166       120.0   NaN     4.53                 1.0               3.0   
-167       128.0   NaN      NaN                 1.0               3.0   
-168       121.0  6.96     4.14                 0.0               4.0   
-169       126.0   NaN      NaN                 0.0               2.0   
-170       124.0  7.08     4.59                 0.0               0.0   
-171       124.0   NaN      NaN                 0.0               2.0   
-172       119.0   NaN      NaN                 0.0               1.0   
-173         NaN   NaN      NaN                 0.0               1.0   
-174       122.0  7.03     4.14                 1.0               3.0   
-175       123.0  7.09     4.45                 0.0               3.0   
-176       125.0  7.01     4.15                 0.0               6.0   
-177       132.0  6.95     4.07                 1.0               6.0   
-178       124.0  6.57     4.11                 0.0               4.0   
-179       115.0  7.09     4.45                 0.0               2.0   
-180       122.0  6.95     4.37                 0.0               2.0   
-181         NaN   NaN      NaN                 0.0               2.0   
-182         NaN   NaN      NaN                 0.0               3.0   
-183       120.0   NaN      NaN                 1.0               3.0   
-184       126.0  7.01     4.00                 1.0               6.0   
-185       120.0  7.00     4.15                 0.0               2.0   
-
-     role_yard_seasons  elite_td_seasons  hit_td_seasons  role_td_seasons  \
-138                2.0               1.0             1.0              1.0   
-139                3.0               1.0             2.0              3.0   
-140                3.0               1.0             2.0              3.0   
-141                5.0               2.0             5.0              5.0   
-142                5.0               3.0             4.0              5.0   
-143                6.0               1.0             4.0              6.0   
-144                6.0               2.0             4.0              5.0   
-145                6.0               2.0             5.0              6.0   
-146                7.0               2.0             6.0              7.0   
-147                5.0               1.0             4.0              5.0   
-148                8.0               2.0             5.0              7.0   
-149                1.0               0.0             1.0              1.0   
-150                2.0               0.0             2.0              2.0   
-151                3.0               0.0             2.0              2.0   
-152                3.0               0.0             0.0              3.0   
-153                3.0               1.0             2.0              3.0   
-154                2.0               0.0             2.0              2.0   
-155                4.0               0.0             2.0              3.0   
-156                3.0               0.0             1.0              4.0   
-157                3.0               0.0             1.0              3.0   
-158                2.0               0.0             2.0              2.0   
-159                4.0               0.0             2.0              3.0   
-160                4.0               0.0             1.0              4.0   
-161                4.0               0.0             2.0              2.0   
-162                4.0               0.0             2.0              4.0   
-163                5.0               0.0             3.0              4.0   
-164                5.0               0.0             3.0              5.0   
-165                5.0               0.0             3.0              3.0   
-166                6.0               0.0             1.0              3.0   
-167                4.0               0.0             2.0              4.0   
-168                6.0               0.0             2.0              5.0   
-169                3.0               0.0             1.0              1.0   
-170                2.0               0.0             2.0              2.0   
-171                6.0               0.0             0.0              3.0   
-172                3.0               0.0             2.0              2.0   
-173                6.0               0.0             3.0              6.0   
-174                6.0               0.0             2.0              5.0   
-175                5.0               0.0             2.0              5.0   
-176                7.0               1.0             2.0              7.0   
-177                8.0               0.0             4.0              7.0   
-178                7.0               1.0             4.0              5.0   
-179                6.0               0.0             2.0              6.0   
-180                6.0               0.0             1.0              3.0   
-181                5.0               0.0             0.0              3.0   
-182                5.0               1.0             2.0              4.0   
-183                4.0               0.0             2.0              4.0   
-184                7.0               0.0             3.0              6.0   
-185                3.0               1.0             1.0              2.0   
-
-     seasons_in_nextgen  
-138                 2.0  
-139                 3.0  
-140                 3.0  
-141                 5.0  
-142                 5.0  
-143                 6.0  
-144                 6.0  
-145                 6.0  
-146                 7.0  
-147                 6.0  
-148                 8.0  
-149                 1.0  
-150                 2.0  
-151                 3.0  
-152                 3.0  
-153                 3.0  
-154                 2.0  
-155                 4.0  
-156                 4.0  
-157                 3.0  
-158                 2.0  
-159                 4.0  
-160                 4.0  
-161                 4.0  
-162                 4.0  
-163                 5.0  
-164                 5.0  
-165                 5.0  
-166                 6.0  
-167                 5.0  
-168                 6.0  
-169                 3.0  
-170                 2.0  
-171                 6.0  
-172                 3.0  
-173                 6.0  
-174                 7.0  
-175                 6.0  
-176                 7.0  
-177                 8.0  
-178                 7.0  
-179                 8.0  
-180                 6.0  
-181                 5.0  
-182                 5.0  
-183                 6.0  
-184                 8.0  
-185                 3.0  
-
-[48 rows x 22 columns]
+           avg_yac_above_expected  
+nfl_tier                           
+Bust                         0.33  
+Elite                        1.10  
+Hit                          0.79  
+Role                         0.56  
+Too Early                    0.43  
 </pre>
 </div>
 </div>
@@ -8753,21 +8547,29 @@ Bust               25.4%             26.8%       13.0%         26.8%
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<hr/>
-<h3 id="BIGGEST-TAKEAWAYS">BIGGEST TAKEAWAYS<a class="anchor-link" href="#BIGGEST-TAKEAWAYS">¶</a></h3><ol>
-<li><p>BIG TD PRODUCTION IS IMPORTANT <br/>
-WRs that put up big td production are proven to be in the Hit tier or above in the NFL. That is a stat that seems to translate. I measured a big number (12), so all tiers were less than 50%. But both Elite and Hit receivers had a season of 12+ TDs over 30% of the time (36.4% and 32.4%), while role and bust players were both at or below 15% (15.1% and 13.0%).</p>
-</li>
-<li><p>Yards/Reception more relevant than expected <br/>
-I expected yards/reception to be somewhat all over the place, but it seems like big time receivers make big time plays. Hit/Elite receivers separated themselves in this category, showing that players who made over 16 y/c showed up 11% to 19% more in each of these categories respectively than they did in the role/bust category.</p>
-</li>
-<li><p>Teams put too much stock in 3 cone, but Elite receivers have Elite 3 cone times<br/>
-The three cone is where I had to do a little digging. It is very sporadic, showing that Elite receivers do often show elite 3 cone times, but a low percentage of Hit receivers do (only 16.2%). There is also often a lot of role receivers that have good 3 cone times (30.2%) and a decent number of busts who do as well (25.4%). What this shows me is that GMs put too much stock into it. Because so many stars have great 3 cone times, they automatically think you need a good time to be a good receiver. What my findings suggest is that if you have a good 3 cone time with good production, you are likely to have a great chance to be an elite receiver. But if you have an elite 3 cone time without that elite production, you are more likely to be a guy who can play a role in an offense, but more as a separator who creates space for the elite weapons of an offense.</p>
-</li>
-<li><p>Broad Jump draws similar conclusions to 3 cone <br/>
-I think again here, we see that one of the lowest numbers of elite broad jump comes in hit receivers. This means that to be elite, you probably need to be an explosive athlete. But receivers who are elite athletes and subpar producers, are often subpar receivers in the NFL. They are often the guys who run clear out routes and don't necessarily produce at a high level once they are in the league</p>
-</li>
-</ol>
+<h3 id="Key-Findings:-What-Predicts-NFL-Success">Key Findings: What Predicts NFL Success<a class="anchor-link" href="#Key-Findings:-What-Predicts-NFL-Success">¶</a></h3><p>After analyzing pre-draft metrics against actual NFL outcomes, four clear patterns emerge about what separates Elite/Hit receivers from Role/Bust players:</p>
+<p><strong>1. Elite Touchdown Production Translates</strong>
+Receivers who dominated in college scoring translate at the highest rate. Among players with a season of 12+ touchdowns:</p>
+<ul>
+<li><strong>36.4%</strong> became Elite NFL receivers</li>
+<li><strong>32.4%</strong> became Hit NFL receivers</li>
+<li>Only <strong>15.1%</strong> ended up as Role players</li>
+<li>Just <strong>13.0%</strong> busted</li>
+</ul>
+<p>This stands in stark contrast to receivers without elite TD production—their odds of becoming Elite or Hit drop by more than half. Finding the end zone in college appears to be the single most transferable skill.</p>
+<p><strong>2. Yards Per Catch Separates the Stars</strong>
+Big-play ability in college predicts big-play ability in the NFL. Receivers who averaged over 16 yards per catch showed up in the Elite/Hit tiers at rates 11-19% higher than in the Role/Bust categories. This suggests that explosiveness—the ability to create chunk plays—isn't just a product of college competition; it translates directly to the next level.</p>
+<p><strong>3. The 3-Cone Conundrum: Elites Excel, But Teams Overvalue It</strong>
+The three-cone drill tells a nuanced story:</p>
+<ul>
+<li><strong>Elite receivers</strong> disproportionately post elite 3-cone times (sub-6.9 seconds)</li>
+<li><strong>But Hit receivers</strong>—the solid starters—actually have the <em>lowest</em> rate of elite 3-cone times (just 16.2%)</li>
+<li>Meanwhile, <strong>30.2% of Role players</strong> and <strong>25.4% of Busts</strong> posted elite 3-cone times</li>
+</ul>
+<p>This suggests NFL teams may be over-indexing on short-area agility. While truly elite receivers tend to have it, the presence of elite agility without corresponding production is actually a red flag—these players become role players at best.</p>
+<p><strong>4. Broad Jump Tells a Similar Story</strong>
+Explosiveness matters for stardom, but not for mere competence. Elite receivers consistently post top-tier broad jumps, but Hit receivers actually show the lowest rates of elite explosiveness. The pattern repeats: elite athleticism + elite production = superstar; elite athleticism + mediocre production = role player or bust.</p>
+<p><strong>The Bottom Line:</strong> College production—specifically touchdown scoring and yards per catch—is more predictive of NFL success than any athletic testing metric. Athletic testing helps identify <em>which</em> productive players have superstar upside, but it cannot separate Hit players from Role players on its own.</p>
 </div>
 </div>
 </div>
