@@ -7802,21 +7802,29 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="PREDICTIVE-MODELING">PREDICTIVE MODELING<a class="anchor-link" href="#PREDICTIVE-MODELING">¶</a></h2>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-</div>
+<h1 id="Predictive-Modeling:-Can-We-Forecast-NFL-Success?">Predictive Modeling: Can We Forecast NFL Success?<a class="anchor-link" href="#Predictive-Modeling:-Can-We-Forecast-NFL-Success?">¶</a></h1><h2 id="Goal">Goal<a class="anchor-link" href="#Goal">¶</a></h2><p>After four notebooks of exploratory analysis—establishing NFL tiers (Notebook 01), analyzing college production vs. draft capital (Notebook 02), examining athletic testing's role (Notebook 03), and discovering YAC above expected as the key separator (Notebook 04)—it's time to ask a different question:</p>
+<p><strong>Can we actually predict which college prospects will become Elite, Hit, Role, or Bust receivers in the NFL?</strong></p>
+<p>This notebook will move beyond correlations and averages to build a simple classification model that combines everything we've learned:</p>
+<ul>
+<li>College production metrics (YPG, yards per catch, peak TDs)</li>
+<li>Combine athletic testing (40 time, 3-cone, broad jump)</li>
+<li>Conference pedigree</li>
+<li>Draft capital (round selected)</li>
+</ul>
+<h2 id="Methodology">Methodology<a class="anchor-link" href="#Methodology">¶</a></h2><p>I'll use a straightforward approach that prioritizes interpretability over complexity:</p>
+<ol>
+<li><strong>Data Preparation:</strong> Clean and combine the master dataset from Notebook 04, handling missing values and encoding categorical variables</li>
+<li><strong>Feature Selection:</strong> Test which combination of pre-draft metrics most effectively predicts NFL tiers</li>
+<li><strong>Model Training:</strong> Start with logistic regression—a transparent model that shows us exactly which features matter most</li>
+<li><strong>Evaluation:</strong> Use confusion matrices to see where the model gets confused (e.g., mistaking Hits for Busts) and feature importance to understand what's driving predictions</li>
+</ol>
+<h2 id="What-I'm-Trying-to-Uncover">What I'm Trying to Uncover<a class="anchor-link" href="#What-I'm-Trying-to-Uncover">¶</a></h2><ul>
+<li><strong>The Holy Grail:</strong> Is there a combination of metrics that consistently identifies Elite receivers?</li>
+<li><strong>Bust Warning Signs:</strong> Do certain profiles (e.g., fast but unproductive) predict failure?</li>
+<li><strong>Market Inefficiencies:</strong> Can we find receivers who outperform their draft slot based on underlying metrics?</li>
+<li><strong>Model Limitations:</strong> Where does the model break down? This will tell us what we're still missing.</li>
+</ul>
+<p>Let's find out if the numbers can actually tell us who will make it.</p>
 </div>
 </div>
 </div>
