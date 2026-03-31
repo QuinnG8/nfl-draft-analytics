@@ -198,7 +198,7 @@ Year,Name,Team,Conference,Class,Height,Position,GP,ST,AT,TT,TPG
 2025,Peter Manuma,Hawaii,Mountain West,Sr.,6-0,DB,13,44,36,80,6.2
 2025,Braylan Lovelace,Pittsburgh,ACC,Jr.,6-2,LB,13,41,39,80,6.2
 2025,Davaughn Patterson,Wake Forest,ACC,So.,6-1,DB,13,35,45,80,6.2
-2025,Kenny Soares,Jr.,NC State,ACC,Jr.,6-2,LB,13,35,45,80,6.2
+2025,Kenny Soares Jr.,NC State,ACC,Jr.,6-2,LB,13,35,45,80,6.2
 2025,Carlos Allen,Houston,Big 12,Sr.,6-1,DL,13,33,47,80,6.2
 2025,Jeremiah Telander,Tennessee,SEC,Jr.,6-2,LB,13,28,52,80,6.2
 2025,Mario Easterly,Old Dominion,Sun Belt,Jr.,6-0,S,13,23,57,80,6.2
@@ -232,7 +232,7 @@ Year,Name,Team,Conference,Class,Height,Position,GP,ST,AT,TT,TPG
 2025,Emmanuel McNeil-Warren,Toledo,MAC,Sr.,6-2,S,13,36,41,77,5.9
 2025,Kyle Efford,Georgia Tech,ACC,Jr.,,LB,13,33,44,77,5.9
 2025,Xamarion Gordon,Coastal Carolina,Sun Belt,Sr.,6-2,S,12,42,29,71,5.9
-2025,Christopher Wallace,Jr.,South Alabama,Sun Belt,Sr.,5-11,DB,12,33,38,71,5.9
+2025,Christopher Wallace Jr.,South Alabama,Sun Belt,Sr.,5-11,DB,12,33,38,71,5.9
 2025,Silas Walters,Miami OH,MAC,Sr.,6-0,DB,12,33,38,71,5.9
 2025,Dariel Djabome,Rutgers,Big Ten,Sr.,6-2,LB,12,27,44,71,5.9
 2025,Tre Gola-Callard,Cincinnati,Big 12,Sr.,6-1,DB,12,24,47,71,5.9
@@ -359,7 +359,7 @@ Year,Name,Team,Conference,Class,Height,Position,GP,ST,AT,TT,TPG
 2025,Treydan Stukes,Arizona,Big 12,Sr.,6-2,DB,10,24,28,52,5.2
 2025,Jones Thomas,Wyoming,Mountain West,So.,6-2,S,11,38,19,57,5.2
 2025,Jacob Finley,NIU,MAC,Sr.,5-11,CB,11,34,23,57,5.2
-2025,Brent Gordon,Jr.,Louisiana,Sun Belt,Fr.,5-11,CB,12,44,18,62,5.2
+2025,Brent Gordon Jr.,Louisiana,Sun Belt,Fr.,5-11,CB,12,44,18,62,5.2
 2025,Dalton Brooks,Texas A&M,SEC,Jr.,6-0,S,12,42,20,62,5.2
 2025,Nick Session,New Mexico St.,CUSA,Sr.,6-0,S,12,42,20,62,5.2
 2025,Andrew Simpson,North Carolina,ACC,Sr.,6-0,LB,12,31,31,62,5.2
@@ -879,7 +879,7 @@ Year,Name,Team,Conference,Class,Height,Position,GP,ST,AT,TT,TPG
 2024,Sam Brumfield,Virginia Tech,ACC,Sr.,5-11,LB,12,17,43,60,5
 2024,DD Snyder II,Ball St.,MAC,Jr.,6-0,DB,11,29,26,55,5
 2024,Jake Chaney,Wisconsin,Big Ten,Sr.,5-11,LB,11,25,30,55,5
-2024,Jerome Jolly,Jr.,Liberty,CUSA,Sr.,5-11,LB,11,23,32,55,5
+2024,Jerome Jolly Jr.,Liberty,CUSA,Sr.,5-11,LB,11,23,32,55,5
 2024,Kyle Arnholt,App State,Sun Belt,Jr.,6-2,LB,11,14,41,55,5
 2024,Kooper Ebel,Iowa St.,Big 12,So.,6-4,LB,14,32,37,69,4.9
 2024,CJ Taylor,Vanderbilt,SEC,Sr.,6-1,S,13,43,21,64,4.9
@@ -992,7 +992,7 @@ Year,Name,Team,Conference,Class,Height,Position,GP,ST,AT,TT,TPG
 2024,Santana Banner,NIU,MAC,So.,6-3,S,12,29,25,54,4.5
 2024,Dakota Cochran,Central Mich.,MAC,Jr.,6-2,LB,12,29,25,54,4.5
 2024,Brad Spence,Arkansas,SEC,So.,6-2,LB,12,26,28,54,4.5
-2024,CJ Bazile,Jr.,Liberty,CUSA,Jr.,6-1,DE,12,17,37,54,4.5
+2024,CJ Bazile Jr.,Liberty,CUSA,Jr.,6-1,DE,12,17,37,54,4.5
 2024,Reid Carrico,West Virginia,Big 12,Jr.,6-2,LB,12,17,37,54,4.5
 2024,Angelo Rankin Jr.,Old Dominion,Sun Belt,Sr.,5-9,DB,10,32,13,45,4.5
 2024,Melvin Jordan IV,Oregon St.,FBS Independent,So.,5-11,LB,10,21,24,45,4.5
@@ -1008,7 +1008,7 @@ Year,Name,Team,Conference,Class,Height,Position,GP,ST,AT,TT,TPG
 2024,Jonathan Thompson,Cincinnati,Big 12,So.,6-2,LB,11,22,27,49,4.5
 2024,Max DiDomenico,Army West Point,The American,Sr.,,S,14,41,21,62,4.4
 2024,Brian Nelson II,North Texas,The American,Fr.,6-0,CB,12,45,8,53,4.4
-2024,Sheldon Arnold,II,UCF,Big 12,Sr.,6-1,DB,12,40,13,53,4.4
+2024,Sheldon Arnold II,UCF,Big 12,Sr.,6-1,DB,12,40,13,53,4.4
 2024,Raion Strader,Miami OH,MAC,So.,6-0,DB,12,40,13,53,4.4
 2024,A'Khori Jones,Liberty,CUSA,Jr.,5-10,S,12,35,18,53,4.4
 2024,Brylan Lanier,Mississippi St.,SEC,Jr.,6-1,S,12,35,18,53,4.4
@@ -1532,7 +1532,7 @@ Year,Name,Team,Conference,Class,Height,Position,GP,ST,AT,TT,TPG
 2022,Jack Campbell,Iowa,Big Ten,Sr.,,LB,13,60,68,128,9.8
 2022,Ayinde Eley,Georgia Tech,ACC,Sr.,,LB,12,57,61,118,9.8
 2022,Jack Howell,Colorado St.,Mountain West,So.,6-0,DB,11,42,66,108,9.8
-2022,Ryan Smenda,Jr.,Wake Forest,ACC,Sr.,,LB,12,41,76,117,9.8
+2022,Ryan Smenda Jr.,Wake Forest,ACC,Sr.,,LB,12,41,76,117,9.8
 2022,Danny Stutsman,Oklahoma,Big 12,So.,6-4,LB,13,68,57,125,9.6
 2022,Matt Salopek,Miami OH,MAC,Jr.,6-1,DB,13,61,63,124,9.5
 2022,Dorian Williams,Tulane,The American,Sr.,,LB,14,81,51,132,9.4
@@ -1693,7 +1693,7 @@ Year,Name,Team,Conference,Class,Height,Position,GP,ST,AT,TT,TPG
 2022,Tyler Taylor,UAB,CUSA,Sr.,,LB,11,27,45,72,6.5
 2022,Nick Emmanwori,South Carolina,SEC,Fr.,6-4,DB,13,62,23,85,6.5
 2022,Beau Brade,Maryland,Big Ten,Jr.,6-1,DB,13,55,30,85,6.5
-2022,Jimmy Phillips,Jr.,SMU,The American,Sr.,,LB,13,50,35,85,6.5
+2022,Jimmy Phillips Jr.,SMU,The American,Sr.,,LB,13,50,35,85,6.5
 2022,Decamerion Richardson,Mississippi St.,SEC,Jr.,6-2,CB,13,50,35,85,6.5
 2022,Logan Taylor,Hawaii,Mountain West,Sr.,6-0,LB,13,49,36,85,6.5
 2022,Larry Brooks,Tulane,The American,Sr.,,S,14,63,28,91,6.5
@@ -2272,7 +2272,7 @@ Year,Name,Team,Conference,Class,Height,Position,GP,ST,AT,TT,TPG
 2021,Troy Brown,Central Mich.,MAC,Sr.,,LB,11,42,24,66,6
 2021,Devon Matthews,Indiana,Big Ten,Sr.,,DB,9,30,24,54,6
 2021,Hunter Reynolds,Utah St.,Mountain West,Sr.,,S,14,48,35,83,5.9
-2021,Ryan Smenda,Jr.,Wake Forest,ACC,Jr.,,LB,14,43,40,83,5.9
+2021,Ryan Smenda Jr.,Wake Forest,ACC,Jr.,,LB,14,43,40,83,5.9
 2021,Donavan Mutin,Houston,The American,Jr.,,LB,13,46,31,77,5.9
 2021,Chris Ojoh,New Mexico St.,FBS Independent,Jr.,,LB,12,42,29,71,5.9
 2021,Riley Whimpey,Boise St.,Mountain West,Sr.,,LB,12,42,29,71,5.9
@@ -2422,7 +2422,7 @@ Year,Name,Team,Conference,Class,Height,Position,GP,ST,AT,TT,TPG
 2021,Damani Staley,South Carolina,SEC,Sr.,,LB,13,40,25,65,5
 2021,Christian Albright,Ball St.,MAC,Sr.,,LB,13,34,31,65,5
 2021,Ty'Ron Hopper,Florida,SEC,So.,6-2,LB,13,34,31,65,5
-2021,Jimmy Phillips,Jr.,SMU,The American,Sr.,,LB,12,39,21,60,5
+2021,Jimmy Phillips Jr.,SMU,The American,Sr.,,LB,12,39,21,60,5
 2021,Jamoi Hodge,TCU,Big 12,So.,6-2,LB,12,36,24,60,5
 2021,Marlowe Wax,Syracuse,ACC,So.,6-1,LB,12,36,24,60,5
 2021,Corey Flagg Jr.,Miami FL,ACC,So.,,LB,12,35,25,60,5
@@ -2848,7 +2848,7 @@ Year,Name,Team,Conference,Class,Height,Position,GP,ST,AT,TT,TPG
 2020,Darrian Beavers,Cincinnati,American,Sr.,,LB,10,38,20,58,5.8
 2020,Drake Thomas,NC State,ACC,So.,,LB,10,25,33,58,5.8
 2020,Brandon Joseph,Northwestern,Big Ten,So.,,DB,9,28,24,52,5.8
-2020,Ryan Smenda,Jr.,Wake Forest,ACC,Jr.,,LB,9,26,26,52,5.8
+2020,Ryan Smenda Jr.,Wake Forest,ACC,Jr.,,LB,9,26,26,52,5.8
 2020,Jarron Morris,Texas St.,Sun Belt,Jr.,,DB,12,51,18,69,5.8
 2020,Mohamoud Diabate,Florida,SEC,So.,,LB,12,33,36,69,5.8
 2020,Traveon Redd,Wake Forest,ACC,Sr.,,DB,8,21,25,46,5.8
@@ -2975,7 +2975,7 @@ Year,Name,Team,Conference,Class,Height,Position,GP,ST,AT,TT,TPG
 2020,Mitchell West,Navy,American,Jr.,,DB,10,32,18,50,5
 2020,TJ Harris,Troy,Sun Belt,Jr.,,S,10,20,30,50,5
 2020,Allan George,Vanderbilt,SEC,Sr.,,DB,9,31,14,45,5
-2020,Stephen Dix,Jr.,Florida St.,ACC,Fr.,,LB,9,18,27,45,5
+2020,Stephen Dix Jr.,Florida St.,ACC,Fr.,,LB,9,18,27,45,5
 2020,Elijah Sullivan,Kansas St.,Big 12,Sr.,,LB,8,28,12,40,5
 2020,Devon Matthews,Indiana,Big Ten,Jr.,,DB,8,26,14,40,5
 2020,Leighton McCarthy,Fla. Atlantic,CUSA,Sr.,,LB,8,20,20,40,5
@@ -3058,7 +3058,7 @@ Year,Name,Team,Conference,Class,Height,Position,GP,ST,AT,TT,TPG
 2019,Jamal Hicks,Colorado St.,Mountain West,Sr.,,DB,12,59,58,117,9.8
 2019,Nate Landman,Colorado,Pac-12,Jr.,,LB,12,83,31,114,9.5
 2019,Ben Holt,Purdue,Big Ten,Sr.,,LB,12,66,48,114,9.5
-2019,Cortez Sisco,Jr.,ULM,Sun Belt,Sr.,,LB,12,49,65,114,9.5
+2019,Cortez Sisco Jr.,ULM,Sun Belt,Sr.,,LB,12,49,65,114,9.5
 2019,Justin Rice,Fresno St.,Mountain West,Jr.,,LB,12,65,47,112,9.3
 2019,Cole Christiansen,Army West Point,FBS Independent,Sr.,,LB,12,63,49,112,9.3
 2019,Tavante Beckett,Marshall,CUSA,So.,,LB,13,49,72,121,9.3
@@ -3262,7 +3262,7 @@ Year,Name,Team,Conference,Class,Height,Position,GP,ST,AT,TT,TPG
 2019,Dwayne Boyles,South Fla.,The American,So.,,LB,12,48,27,75,6.3
 2019,Tyler Glass,ULM,Sun Belt,Jr.,,DB,12,39,36,75,6.3
 2019,Jack Koerner,Iowa,Big Ten,So.,,DB,13,49,32,81,6.2
-2019,Ryan Smenda,Jr.,Wake Forest,ACC,So.,,LB,13,38,43,81,6.2
+2019,Ryan Smenda Jr.,Wake Forest,ACC,So.,,LB,13,38,43,81,6.2
 2019,Brody Hoying,Eastern Mich.,MAC,Sr.,,DB,13,37,44,81,6.2
 2019,Kevin Brennan,Navy,The American,So.,,DB,13,31,50,81,6.2
 2019,Michael Oliver,Central Mich.,MAC,Sr.,,LB,14,49,38,87,6.2
@@ -3462,7 +3462,7 @@ Year,Name,Team,Conference,Class,Height,Position,GP,ST,AT,TT,TPG
 2019,Khaylan Thomas,Arizona St.,Pac-12,Sr.,,LB,13,45,21,66,5.1
 2019,Henry Segura,Charlotte,CUSA,So.,,LB,13,42,24,66,5.1
 2019,Cameron McGrone,Michigan,Big Ten,So.,,LB,13,38,28,66,5.1
-2019,Gurvan Hall,Jr.,Miami FL,ACC,So.,,DB,13,37,29,66,5.1
+2019,Gurvan Hall Jr.,Miami FL,ACC,So.,,DB,13,37,29,66,5.1
 2019,Thomas Barber,Minnesota,Big Ten,Sr.,,LB,13,35,31,66,5.1
 2019,Elijah Sullivan,Kansas St.,Big 12,Jr.,,LB,13,46,19,65,5
 2019,Trey Rucker,Wake Forest,ACC,Fr.,6-0,DB,13,39,26,65,5
@@ -3646,7 +3646,7 @@ Year,Name,Team,Conference,Class,Height,Position,GP,ST,AT,TT,TPG
 2018,Nate Evans,UCF,The American,Jr.,,LB,13,55,44,99,7.6
 2018,Johnathan Abram,Mississippi St.,SEC,Sr.,,DB,13,53,46,99,7.6
 2018,Bryce Torneden,Kansas,Big 12,Jr.,,DB,12,57,34,91,7.6
-2018,Jonathan Lenard,Jr.,San Jose St.,Mountain West,So.,,DB,12,56,35,91,7.6
+2018,Jonathan Lenard Jr.,San Jose St.,Mountain West,So.,,DB,12,56,35,91,7.6
 2018,Hamsah Nasirildeen,Florida St.,ACC,So.,,DB,12,51,40,91,7.6
 2018,Matt Bahr,Kent St.,MAC,Sr.,,LB,12,50,41,91,7.6
 2018,Connor Strachan,Boston College,ACC,Sr.,,LB,12,47,44,91,7.6
@@ -3702,7 +3702,7 @@ Year,Name,Team,Conference,Class,Height,Position,GP,ST,AT,TT,TPG
 2018,Bryce Cosby,Ball St.,MAC,So.,,DB,12,42,41,83,6.9
 2018,Dedrick Young II,Nebraska,Big Ten,Sr.,,LB,12,41,42,83,6.9
 2018,Omar Fortt,UConn,The American,So.,,LB,11,48,28,76,6.9
-2018,Stanley Barnwell,Jr.,New Mexico,Mountain West,Sr.,,DB,11,40,36,76,6.9
+2018,Stanley Barnwell Jr.,New Mexico,Mountain West,Sr.,,DB,11,40,36,76,6.9
 2018,Darius Harris,Middle Tenn.,CUSA,Sr.,,LB,14,49,47,96,6.9
 2018,Jake Gervase,Iowa,Big Ten,Sr.,,DB,13,49,40,89,6.8
 2018,Greg Reaves,South Fla.,The American,Jr.,,DL,13,47,42,89,6.8
@@ -3821,7 +3821,7 @@ Year,Name,Team,Conference,Class,Height,Position,GP,ST,AT,TT,TPG
 2018,Rick Gamboa,Colorado,Pac-12,Sr.,,LB,12,37,34,71,5.9
 2018,Frankie Griffin,Texas St.,Sun Belt,Sr.,,LB,12,33,38,71,5.9
 2018,Joey Blount,Virginia,ACC,So.,,DB,11,39,26,65,5.9
-2018,Cortez Sisco,Jr.,ULM,Sun Belt,Sr.,,DB,9,26,27,53,5.9
+2018,Cortez Sisco Jr.,ULM,Sun Belt,Sr.,,DB,9,26,27,53,5.9
 2018,Oluwaseun Idowu,Pittsburgh,ACC,Sr.,,LB,14,55,27,82,5.9
 2018,JR Pace,Northwestern,Big Ten,So.,,DB,14,51,31,82,5.9
 2018,Willie Harvey,Iowa St.,Big 12,Sr.,,LB,13,46,30,76,5.8
@@ -3910,13 +3910,13 @@ Year,Name,Team,Conference,Class,Height,Position,GP,ST,AT,TT,TPG
 2018,Darien Butler,Arizona St.,Pac-12,Fr.,,LB,13,36,34,70,5.4
 2018,Dae'Von Washington,Louisiana Tech,CUSA,Sr.,,LB,13,36,34,70,5.4
 2018,Mikial Onu,SMU,The American,Jr.,,DB,11,41,18,59,5.4
-2018,Picasso Nelson,Jr.,Southern Miss.,CUSA,Sr.,,DB,11,31,28,59,5.4
+2018,Picasso Nelson Jr.,Southern Miss.,CUSA,Sr.,,DB,11,31,28,59,5.4
 2018,Jalen Young,Fla. Atlantic,CUSA,Sr.,,DB,11,30,29,59,5.4
 2018,Mykelti Williams,NIU,MAC,Jr.,,DB,14,45,30,75,5.4
 2018,Fitzgerald Mofor,UAB,CUSA,Jr.,,LB,14,42,33,75,5.4
 2018,Josh Norwood,West Virginia,Big 12,Jr.,,DB,12,49,15,64,5.3
 2018,Nigel Warrior,Tennessee,SEC,Jr.,,DB,12,41,23,64,5.3
-2018,Carlos Basham,Jr.,Wake Forest,ACC,So.,,DL,12,36,28,64,5.3
+2018,Carlos Basham Jr.,Wake Forest,ACC,So.,,DL,12,36,28,64,5.3
 2018,Tomarcio Reese,Ga. Southern,Sun Belt,Sr.,,LB,12,28,36,64,5.3
 2018,Marcel Spears,Iowa St.,Big 12,Jr.,,LB,13,44,25,69,5.3
 2018,Cornel Jones,Purdue,Big Ten,So.,,LB,13,43,26,69,5.3
@@ -3941,10 +3941,10 @@ Year,Name,Team,Conference,Class,Height,Position,GP,ST,AT,TT,TPG
 2018,Chase Winovich,Michigan,Big Ten,Sr.,,DL,13,31,37,68,5.2
 2018,Tevis Bartlett,Washington,Pac-12,Sr.,,LB,14,43,30,73,5.2
 2018,Luke Masterson,Wake Forest,ACC,So.,,DB,10,33,19,52,5.2
-2018,Michael Sewell,Jr.,New Mexico,Mountain West,Sr.,,DB,11,34,23,57,5.2
+2018,Michael Sewell Jr.,New Mexico,Mountain West,Sr.,,DB,11,34,23,57,5.2
 2018,Nik Needham,UTEP,CUSA,Sr.,,DB,12,48,14,62,5.2
 2018,Isaiah Wharton,Rutgers,Big Ten,Sr.,,DB,12,38,24,62,5.2
-2018,Dameon Willis,Jr.,Indiana,Big Ten,Sr.,,LB,12,38,24,62,5.2
+2018,Dameon Willis Jr.,Indiana,Big Ten,Sr.,,LB,12,38,24,62,5.2
 2018,Brett Anderson,Ball St.,MAC,So.,,DB,12,35,27,62,5.2
 2018,Luke Gifford,Nebraska,Big Ten,Sr.,,LB,12,35,27,62,5.2
 2018,Antonio Blackmon,Purdue,Big Ten,Sr.,,DB,13,57,10,67,5.2
@@ -4006,7 +4006,7 @@ Year,Name,Team,Conference,Class,Height,Position,GP,ST,AT,TT,TPG
 2018,Sam Franklin,Temple,The American,Jr.,,LB,13,45,18,63,4.8
 2018,Cam Brown,Penn St.,Big Ten,Jr.,,LB,13,41,22,63,4.8
 2018,Zack Baun,Wisconsin,Big Ten,Jr.,,LB,13,37,26,63,4.8
-2018,Chuck Wade,Jr.,Wake Forest,ACC,Sr.,,DB,13,33,30,63,4.8
+2018,Chuck Wade Jr.,Wake Forest,ACC,Sr.,,DB,13,33,30,63,4.8
 2018,Zane Zandier,Virginia,ACC,So.,,LB,13,28,35,63,4.8
 2018,Jeffery Simmons,Mississippi St.,SEC,Jr.,,DL,13,25,38,63,4.8
 2018,Kevin Thurmon,Arkansas St.,Sun Belt,Jr.,,DL,13,16,47,63,4.8
@@ -4625,7 +4625,7 @@ Year,Name,Team,Conference,Class,Height,Position,GP,ST,AT,TT,TPG
 2016,Markus Bailey,Purdue,Big Ten,Fr.,,LB,12,61,36,97,8.1
 2016,Tony Lashley,Idaho,Sun Belt,So.,,LB,13,65,40,105,8.1
 2016,Marquel Lee,Wake Forest,ACC,Sr.,,LB,13,63,42,105,8.1
-2016,Anthony Walker,Jr.,Northwestern,Big Ten,Jr.,,LB,13,62,43,105,8.1
+2016,Anthony Walker Jr.,Northwestern,Big Ten,Jr.,,LB,13,62,43,105,8.1
 2016,Jason Beck,Eastern Mich.,MAC,Jr.,,DB,13,47,57,104,8
 2016,Shaan Washington,Texas A&M,SEC,Sr.,,LB,13,45,59,104,8
 2016,Kyle Rachwal,Eastern Mich.,MAC,So.,,LB,13,38,66,104,8
@@ -4843,7 +4843,7 @@ Year,Name,Team,Conference,Class,Height,Position,GP,ST,AT,TT,TPG
 2015,Reggie Northrup,Florida St.,ACC,Sr.,,LB,13,45,49,94,7.2
 2015,B.J. Goodson,Clemson,ACC,Sr.,,LB,15,59,49,108,7.2
 2015,Qujuan Floyd,Iowa St.,Big 12,Sr.,,DB,11,51,28,79,7.2
-2015,Joe Dineen,Jr.,Kansas,Big 12,So.,,LB,12,66,20,86,7.2
+2015,Joe Dineen Jr.,Kansas,Big 12,So.,,LB,12,66,20,86,7.2
 2015,Zach Edwards,Cincinnati,The American,Jr.,,DB,13,63,30,93,7.2
 2015,Chad Whitener,Oklahoma St.,Big 12,So.,,LB,13,58,35,93,7.2
 2015,Junior Joseph,UConn,The American,So.,,LB,13,40,53,93,7.2
@@ -5409,7 +5409,7 @@ Year,Name,Team,Conference,Class,Height,Position,GP,ST,AT,TT,TPG
 2013,Michael Lowe,California,Pac-12,Jr.,,DB,12,42,25,67,5.6
 2013,Dexter Linton,Kansas,Big 12,Sr.,,DB,12,38,29,67,5.6
 2013,Kavon Frazier,Central Mich.,MAC,So.,,DB,12,36,31,67,5.6
-2013,Damon Ogburn,Jr.,San Jose St.,Mountain West,Sr.,,DB,11,42,19,61,5.5
+2013,Damon Ogburn Jr.,San Jose St.,Mountain West,Sr.,,DB,11,42,19,61,5.5
 2013,Alvin Dupree,Kentucky,SEC,Jr.,,DL,11,35,26,61,5.5
 2013,Aaron Hill,Minnesota,Big Ten,Sr.,,LB,13,52,20,72,5.5
 2013,Robert Smith,Clemson,ACC,Jr.,,DB,13,49,23,72,5.5
